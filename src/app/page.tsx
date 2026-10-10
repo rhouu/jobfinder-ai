@@ -21,13 +21,21 @@ import {
 } from "lucide-react";
 import { JobStatus } from "@prisma/client";
 
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
-  const featuredJobs = await prisma.job.findMany({
-    where: { status: JobStatus.ACTIVE },
-    take: 6,
-    orderBy: { publicationDate: "desc" },
-    include: { skills: true, company: true },
-  });
+  let featuredJobs = [];
+  try {
+    featuredJobs = await prisma.job.findMany({
+      where: { status: JobStatus.ACTIVE },
+      take: 6,
+      orderBy: { publicationDate: "desc" },
+      include: { skills: true, company: true },
+    });
+  } catch (err) {
+    console.warn("Database not reachable during page load, continuing with empty jobs:", err);
+    featuredJobs = [];
+  }
 
   const categories = [
     { name: "Informatique & Tech", icon: Code2, count: 28, tag: "Informatique & Tech" },
