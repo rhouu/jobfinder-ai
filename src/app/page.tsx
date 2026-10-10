@@ -23,8 +23,12 @@ import { JobStatus } from "@prisma/client";
 
 export const dynamic = "force-dynamic";
 
+type FeaturedJobItem = Awaited<ReturnType<typeof prisma.job.findMany<{
+  include: { skills: true; company: true };
+}>>>[number];
+
 export default async function HomePage() {
-  let featuredJobs = [];
+  let featuredJobs: FeaturedJobItem[] = [];
   try {
     featuredJobs = await prisma.job.findMany({
       where: { status: JobStatus.ACTIVE },
