@@ -54,8 +54,7 @@ export function Navbar() {
   };
 
   const languages: { code: Locale; label: string; flag: string }[] = [
-    { code: "fr", label: "FR", flag: "🇫🇷" },
-    { code: "ar", label: "العربية", flag: "🇲🇦" },
+    { code: "fr", label: "FR", flag: "🇲🇦" },
     { code: "en", label: "EN", flag: "🇬🇧" },
   ];
 

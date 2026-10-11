@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   MapPin,
@@ -85,20 +85,38 @@ export function JobCard({
   const [saved, setSaved] = useState(isSaved);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const localSaved: string[] = JSON.parse(localStorage.getItem("saved_jobs") || "[]");
+        if (localSaved.includes(id)) {
+          setSaved(true);
+        }
+      } catch {}
+    }
+  }, [id]);
+
   const handleToggleSave = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    try {
-      const res = await fetch(`/api/jobs/${id}/save`, { method: "POST" });
-      if (res.ok) {
-        const data = await res.json();
-        setSaved(data.isSaved);
-      } else if (res.status === 401) {
-        window.location.href = "/auth/login";
-      }
-    } catch (err) {
-      console.error("Save error:", err);
+
+    const newSaved = !saved;
+    setSaved(newSaved);
+
+    if (typeof window !== "undefined") {
+      try {
+        const localSaved: string[] = JSON.parse(localStorage.getItem("saved_jobs") || "[]");
+        const updated = newSaved
+          ? Array.from(new Set([...localSaved, id]))
+          : localSaved.filter((jid) => jid !== id);
+        localStorage.setItem("saved_jobs", JSON.stringify(updated));
+      } catch {}
     }
+
+    // Quiet server sync if logged in (never blocks or redirects)
+    try {
+      await fetch(`/api/jobs/${id}/save`, { method: "POST" });
+    } catch {}
   };
 
   const formattedDate = new Date(publicationDate).toLocaleDateString("fr-FR", {

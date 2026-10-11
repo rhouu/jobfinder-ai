@@ -357,31 +357,25 @@ export default async function JobDetailPage({
             )}
 
             {/* Source & Freshness Transparency */}
-            <div className="rounded-2xl border border-[#D1E3EC] bg-[#FFFFFF]/80 p-5 space-y-3 text-xs">
-              <h3 className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                Traçabilité & Vérification
-              </h3>
-              <div className="space-y-2 text-slate-600">
-                <div className="flex justify-between pb-1.5 border-b border-[#D1E3EC]">
-                  <span className="text-slate-500">Source de publication :</span>
-                  <span className="font-semibold text-[#0D2B45]">
+            {/* Source & Freshness Trust Badge */}
+            <div className="rounded-2xl border border-emerald-200 bg-emerald-50/60 p-4 space-y-2.5 text-xs">
+              <div className="flex items-center gap-2 text-emerald-900 font-bold text-xs">
+                <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" />
+                <span>Offre Certifiée & Recruteur Contrôlé</span>
+              </div>
+              <div className="space-y-1.5 text-emerald-950/80 text-[11px]">
+                <div className="flex justify-between">
+                  <span className="text-slate-500">Publication :</span>
+                  <span className="font-semibold text-slate-800">
                     {job.sourceProvider === "DIRECT" || job.sourceProvider === "RECRUITER"
                       ? "Recruteur Officiel Direct"
-                      : "Réseau Entreprises Certifiées Maroc"}
+                      : "Canal Partenaire Officiel Maroc"}
                   </span>
                 </div>
-                <div className="flex justify-between pb-1.5 border-b border-[#D1E3EC]">
-                  <span className="text-slate-500">Dernière vérification :</span>
-                  <span>{new Date(job.lastCheckedAt).toLocaleDateString("fr-FR")}</span>
-                </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-500">Statut de l&apos;offre :</span>
-                  <span className="text-[#1E5A6E] font-semibold">Active & Contrôlée</span>
+                  <span className="text-slate-500">Contrôle anti-fraude :</span>
+                  <span className="font-semibold text-emerald-700">Validé</span>
                 </div>
-              </div>
-
-              <div className="pt-2 text-[11px] text-slate-500 leading-relaxed">
-                🛡️ JobFinder AI protège les candidats en vérifiant l&apos;authenticité des recruteurs et en rejetant toute offre sans contact officiel avéré.
               </div>
             </div>
           </div>

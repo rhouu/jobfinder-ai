@@ -22,6 +22,7 @@ import {
   Gauge,
   Check,
   Printer,
+  ShieldCheck,
 } from "lucide-react";
 import { AtsCvExportModal } from "@/components/AtsCvExportModal";
 
@@ -87,7 +88,6 @@ export default function CandidateDashboardPage() {
 
   // CV Upload state
   const [uploadFile, setUploadFile] = useState<File | null>(null);
-  const [consent, setConsent] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
@@ -155,10 +155,6 @@ export default function CandidateDashboardPage() {
     e.preventDefault();
     if (!uploadFile) {
       setUploadError("Veuillez sélectionner un fichier CV.");
-      return;
-    }
-    if (!consent) {
-      setUploadError("Veuillez autoriser le traitement de vos données pour l'analyse IA.");
       return;
     }
 
@@ -414,17 +410,9 @@ export default function CandidateDashboardPage() {
                   </label>
                 </div>
 
-                <div className="flex items-start gap-2.5">
-                  <input
-                    type="checkbox"
-                    id="cvConsent"
-                    checked={consent}
-                    onChange={(e) => setConsent(e.target.checked)}
-                    className="mt-0.5 h-4 w-4 rounded border-[#D1E3EC] bg-[#F4F8FA] text-[#0D2B45]"
-                  />
-                  <label htmlFor="cvConsent" className="text-xs text-slate-300 cursor-pointer leading-relaxed">
-                    J&apos;autorise JobFinder AI à extraire et traiter le contenu de mon CV à des fins exclusives de matching d&apos;opportunités professionnelles.
-                  </label>
+                <div className="flex items-center gap-2 text-xs text-slate-500 py-1">
+                  <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" />
+                  <span>Traitement sécurisé : vos données restent strictement confidentielles.</span>
                 </div>
 
                 {uploadError && (
@@ -443,7 +431,7 @@ export default function CandidateDashboardPage() {
 
                 <button
                   type="submit"
-                  disabled={isUploading || !uploadFile || !consent}
+                  disabled={isUploading || !uploadFile}
                   className="rounded-xl bg-gradient-to-r from-[#0D2B45] to-[#1E5A6E] px-5 py-2.5 text-xs font-bold text-[#F4F8FA] shadow-md shadow-[#0D2B45]/25 hover:brightness-110 disabled:opacity-50 cursor-pointer"
                 >
                   {isUploading ? "Extraction en cours..." : "Analyser et enregistrer mon CV"}

@@ -451,7 +451,6 @@ function JobsSearchContent() {
                 >
                   <option value="relevance">Pertinence</option>
                   <option value="recent">Plus récentes</option>
-                  <option value="salary">Rémunération</option>
                 </select>
               </div>
             </div>
