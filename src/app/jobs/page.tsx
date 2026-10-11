@@ -5,6 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { JobCard } from "@/components/JobCard";
+import { JobAlertSubscriptionCard } from "@/components/JobAlertSubscriptionCard";
 import { useI18n } from "@/lib/i18n";
 import {
   Search,
@@ -425,6 +426,9 @@ function JobsSearchContent() {
                 </label>
               </div>
             </div>
+
+            {/* Email / WhatsApp Job Alerts */}
+            <JobAlertSubscriptionCard />
           </aside>
 
           {/* Job List Container */}

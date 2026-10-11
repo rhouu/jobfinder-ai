@@ -90,15 +90,27 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Sources Transparency */}
+          {/* Support & Contact */}
           <div>
-            <h4 className="text-sm font-black text-[#0D2B45] mb-3.5 uppercase tracking-wider">Transparence</h4>
-            <p className="text-xs leading-relaxed text-slate-500 mb-3 font-normal">
-              Agrégation d&apos;offres vérifiées issues de sources officielles et partenaires agréés.
-            </p>
-            <div className="rounded-xl border border-slate-200 bg-[#F8FAFC] p-3 text-xs text-slate-700 font-semibold">
-              Aucune fausse offre publiée. Les opportunités sont mises à jour et nettoyées quotidiennement.
-            </div>
+            <h4 className="text-sm font-black text-[#0D2B45] mb-3.5 uppercase tracking-wider">Assistance & Recruteurs</h4>
+            <ul className="space-y-2.5 font-semibold text-slate-600">
+              <li>
+                <a href="mailto:rhouadam0@gmail.com" className="hover:text-[#0D2B45] transition-colors flex items-center gap-1.5">
+                  <span>Contact Support :</span>
+                  <span className="text-[#1E5A6E] font-bold">rhouadam0@gmail.com</span>
+                </a>
+              </li>
+              <li>
+                <Link href="/salary-calculator" className="hover:text-[#0D2B45] transition-colors">
+                  Simulateur Salaire (MAD)
+                </Link>
+              </li>
+              <li>
+                <Link href="/jobs?type=INTERNSHIP&pfe=true" className="hover:text-[#0D2B45] transition-colors">
+                  Espace PFE & Écoles Maroc
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
 

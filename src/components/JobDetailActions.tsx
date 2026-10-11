@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import { ApplicationModal } from "./ApplicationModal";
-import { Sparkles, ExternalLink, Send, MessageSquare } from "lucide-react";
+import { InterviewSimulatorModal } from "./InterviewSimulatorModal";
+import { Sparkles, Send, MessageSquare, HelpCircle } from "lucide-react";
 
 interface JobDetailActionsProps {
   job: {
@@ -18,6 +19,7 @@ interface JobDetailActionsProps {
 
 export function JobDetailActions({ job }: JobDetailActionsProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isInterviewModalOpen, setIsInterviewModalOpen] = useState(false);
 
   return (
     <>
@@ -38,6 +40,15 @@ export function JobDetailActions({ job }: JobDetailActionsProps) {
 
         <button
           type="button"
+          onClick={() => setIsInterviewModalOpen(true)}
+          className="flex items-center gap-2 rounded-xl border-2 border-[#0D2B45] bg-white hover:bg-[#E6F0F6] px-4 py-3 text-xs font-black text-[#0D2B45] transition-all cursor-pointer"
+        >
+          <HelpCircle className="h-4 w-4 text-[#1E5A6E]" />
+          <span>Simuler Entretien IA</span>
+        </button>
+
+        <button
+          type="button"
           onClick={() => setIsModalOpen(true)}
           className="flex items-center gap-2 rounded-xl bg-[#0D2B45] hover:bg-[#1E5A6E] px-5 py-3 text-xs font-black text-white shadow-md transition-all cursor-pointer"
         >
@@ -50,6 +61,15 @@ export function JobDetailActions({ job }: JobDetailActionsProps) {
         <ApplicationModal
           job={job}
           onClose={() => setIsModalOpen(false)}
+        />
+      )}
+
+      {isInterviewModalOpen && (
+        <InterviewSimulatorModal
+          jobId={job.id}
+          jobTitle={job.title}
+          companyName={job.companyName}
+          onClose={() => setIsInterviewModalOpen(false)}
         />
       )}
     </>

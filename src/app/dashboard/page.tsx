@@ -21,7 +21,9 @@ import {
   Lightbulb,
   Gauge,
   Check,
+  Printer,
 } from "lucide-react";
+import { AtsCvExportModal } from "@/components/AtsCvExportModal";
 
 interface AtsAuditResult {
   score: number;
@@ -97,6 +99,7 @@ export default function CandidateDashboardPage() {
   // ATS CV Audit state
   const [atsAudit, setAtsAudit] = useState<AtsAuditResult | null>(null);
   const [loadingAts, setLoadingAts] = useState(false);
+  const [isExportModalOpen, setIsExportModalOpen] = useState(false);
 
   useEffect(() => {
     loadData();
@@ -245,7 +248,14 @@ export default function CandidateDashboardPage() {
             </div>
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              onClick={() => setIsExportModalOpen(true)}
+              className="flex items-center gap-1.5 rounded-xl border border-[#1E5A6E]/40 bg-white hover:bg-slate-50 px-3.5 py-2.5 text-xs font-bold text-[#0D2B45] shadow-sm transition-all cursor-pointer"
+            >
+              <FileText className="h-4 w-4 text-[#1E5A6E]" />
+              <span>Exporter mon CV ATS (PDF)</span>
+            </button>
             <button
               onClick={handleRunAiMatching}
               disabled={isMatching}
@@ -364,14 +374,24 @@ export default function CandidateDashboardPage() {
           <div className="space-y-8">
             {/* Upload CV Box */}
             <div className="rounded-3xl border border-[#D1E3EC] bg-[#FFFFFF]/85 p-6 sm:p-8 backdrop-blur-xl space-y-6">
-              <div>
-                <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-                  <Upload className="h-5 w-5 text-[#1E5A6E]" />
-                  Importer un nouveau CV (PDF ou DOCX)
-                </h2>
-                <p className="text-xs text-slate-400 mt-1">
-                  Notre moteur sécurisé extrait automatiquement vos compétences pour calculer la compatibilité avec les offres.
-                </p>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                  <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <Upload className="h-5 w-5 text-[#1E5A6E]" />
+                    Importer un nouveau CV (PDF ou DOCX)
+                  </h2>
+                  <p className="text-xs text-slate-400 mt-1">
+                    Notre moteur sécurisé extrait automatiquement vos compétences pour calculer la compatibilité avec les offres.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsExportModalOpen(true)}
+                  className="flex items-center gap-2 rounded-xl bg-[#0D2B45] hover:bg-[#1E5A6E] px-4 py-2.5 text-xs font-bold text-white shadow-md transition-all shrink-0 cursor-pointer"
+                >
+                  <Printer className="h-4 w-4 text-cyan-300" />
+                  <span>Générer CV ATS Maroc (PDF)</span>
+                </button>
               </div>
 
               <form onSubmit={handleFileUpload} className="space-y-4">
@@ -673,6 +693,13 @@ export default function CandidateDashboardPage() {
               </div>
             </div>
           </div>
+        )}
+
+        {isExportModalOpen && user && (
+          <AtsCvExportModal
+            user={user}
+            onClose={() => setIsExportModalOpen(false)}
+          />
         )}
       </main>
 

@@ -281,10 +281,11 @@ export function JobCard({
           )}
         </div>
 
-        {/* Footer Actions: Emploi-Public exact styling (Outline "Consulter" + Solid Navy "Créer une alerte / Postuler") */}
+        {/* Footer Actions: Emploi-Public exact styling */}
         <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
-          <div className="text-[11px] font-semibold text-slate-500">
-            Source : <strong className="text-slate-800">{sourceProvider || "Officiel"}</strong>
+          <div className="flex items-center gap-1.5 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">
+            <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" />
+            <span>Offre certifiée Maroc</span>
           </div>
 
           <div className="flex items-center gap-2">
