@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import {
   X,
@@ -40,6 +41,13 @@ export function ApplicationModal({ job, onClose }: ApplicationModalProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittedSuccess, setSubmittedSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    // Auto-generate AI cover letter if empty
+    handleGenerateCoverLetter();
+  }, []);
 
   const handleGenerateCoverLetter = async () => {
     setIsGeneratingLetter(true);
@@ -146,12 +154,14 @@ export function ApplicationModal({ job, onClose }: ApplicationModalProps) {
     }
   };
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
+  if (!mounted || typeof document === "undefined") return null;
+
+  return createPortal(
+    <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-black/75 backdrop-blur-md overflow-y-auto w-screen h-screen">
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="relative w-full max-w-2xl rounded-2xl border border-[#D1E3EC] bg-[#F4F8FA] p-6 shadow-2xl my-8 text-[#0D2B45] max-h-[90vh] overflow-y-auto"
+        initial={{ opacity: 0, scale: 0.95, y: 10 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        className="relative w-full max-w-2xl rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-2xl my-auto text-[#0D2B45] max-h-[90vh] overflow-y-auto"
       >
         {/* Header */}
         <div className="flex items-start justify-between pb-4 border-b border-[#D1E3EC]">
@@ -401,6 +411,7 @@ export function ApplicationModal({ job, onClose }: ApplicationModalProps) {
           </div>
         )}
       </motion.div>
-    </div>
+    </div>,
+    document.body
   );
 }
