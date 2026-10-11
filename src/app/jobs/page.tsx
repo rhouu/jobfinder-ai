@@ -212,8 +212,8 @@ function JobsSearchContent() {
     <div className="min-h-screen bg-[#F4F8FA] text-[#0F172A] flex flex-col">
       <Navbar />
 
-      {/* Top Banner (Navy #0D2B45) matching Emploi-Public */}
-      <div className="bg-[#0D2B45] text-white py-10 px-4 sm:px-8 lg:px-14">
+      {/* Top Banner (Deep Midnight #0A192F) */}
+      <div className="bg-gradient-to-b from-[#060D17] via-[#0A192F] to-[#0F2744] text-white py-10 px-4 sm:px-8 lg:px-14">
         <div className="w-full max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
             <div>
@@ -245,9 +245,9 @@ function JobsSearchContent() {
 
               <button
                 onClick={() => setShowMobileFilter(!showMobileFilter)}
-                className="lg:hidden flex items-center gap-2 rounded-xl bg-white text-[#0D2B45] px-4 py-2 text-xs font-bold shadow"
+                className="lg:hidden flex items-center gap-2 rounded-xl bg-white text-slate-800 px-4 py-2 text-xs font-bold shadow"
               >
-                <Filter className="h-4 w-4" />
+                <Filter className="h-4 w-4 text-blue-600" />
                 <span>Filtres</span>
               </button>
             </div>
@@ -258,8 +258,8 @@ function JobsSearchContent() {
             onSubmit={handleApplyFilters}
             className="grid grid-cols-1 sm:grid-cols-12 gap-3 bg-white p-3.5 rounded-2xl shadow-xl border border-slate-200"
           >
-            <div className="sm:col-span-5 flex items-center bg-[#F8FAFC] rounded-xl px-3.5 py-2.5 border border-slate-300 focus-within:border-[#0D2B45]">
-              <Search className="h-4 w-4 text-[#0D2B45] shrink-0 mr-2.5" />
+            <div className="sm:col-span-5 flex items-center bg-[#F8FAFC] rounded-xl px-3.5 py-2.5 border border-slate-300 focus-within:border-blue-600">
+              <Search className="h-4 w-4 text-blue-600 shrink-0 mr-2.5" />
               <input
                 type="text"
                 value={query}
@@ -269,8 +269,8 @@ function JobsSearchContent() {
               />
             </div>
 
-            <div className="sm:col-span-4 flex items-center bg-[#F8FAFC] rounded-xl px-3.5 py-2.5 border border-slate-300 focus-within:border-[#0D2B45]">
-              <MapPin className="h-4 w-4 text-[#1E5A6E] shrink-0 mr-2.5" />
+            <div className="sm:col-span-4 flex items-center bg-[#F8FAFC] rounded-xl px-3.5 py-2.5 border border-slate-300 focus-within:border-blue-600">
+              <MapPin className="h-4 w-4 text-blue-600 shrink-0 mr-2.5" />
               <input
                 type="text"
                 value={location}
@@ -283,14 +283,14 @@ function JobsSearchContent() {
             <div className="sm:col-span-3 flex items-center gap-2">
               <button
                 type="submit"
-                className="flex-1 rounded-xl bg-[#0D2B45] hover:bg-[#1E5A6E] py-2.5 px-4 text-xs sm:text-sm font-black text-white shadow-md transition-all text-center"
+                className="flex-1 rounded-xl bg-blue-600 hover:bg-blue-700 py-2.5 px-4 text-xs sm:text-sm font-black text-white shadow-md shadow-blue-500/25 transition-all text-center cursor-pointer"
               >
                 Rechercher
               </button>
               <button
                 type="button"
                 onClick={handleResetFilters}
-                className="rounded-xl border border-slate-300 bg-slate-50 p-2.5 text-slate-600 hover:text-[#0D2B45] hover:border-[#0D2B45] transition-all"
+                className="rounded-xl border border-slate-300 bg-slate-50 p-2.5 text-slate-600 hover:text-blue-600 hover:border-blue-600 transition-all cursor-pointer"
                 title="Réinitialiser"
               >
                 <RotateCcw className="h-4 w-4" />

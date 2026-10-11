@@ -76,15 +76,15 @@ export default async function HomePage() {
     <div className="min-h-screen bg-[#F4F8FA] text-[#0F172A] flex flex-col">
       <Navbar />
 
-      {/* INSTITUTIONAL HERO SECTION - Exactly like Emploi-Public with Navy Banner & Crisp White Search */}
-      <section className="relative bg-[#0D2B45] text-white pt-12 pb-24 md:pt-16 md:pb-32 px-4 sm:px-8 lg:px-14">
+      {/* INSTITUTIONAL HERO SECTION - Modern Deep Midnight with Electric Glow */}
+      <section className="relative bg-[#0A192F] text-white pt-12 pb-24 md:pt-16 md:pb-32 px-4 sm:px-8 lg:px-14">
         {/* Subtle background overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#081D30] via-[#0D2B45] to-[#1E5A6E] opacity-95 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#060D17] via-[#0A192F] to-[#0F2744] opacity-95 pointer-events-none" />
 
         <div className="relative w-full max-w-7xl mx-auto text-center">
           {/* Breadcrumb / Category Tag */}
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold text-cyan-200 mb-6 backdrop-blur-sm border border-white/15">
-            <ShieldCheck className="h-4 w-4 text-cyan-300" />
+          <div className="inline-flex items-center gap-2 rounded-full bg-blue-500/10 px-4 py-1.5 text-xs font-semibold text-cyan-300 mb-6 backdrop-blur-sm border border-cyan-400/20">
+            <ShieldCheck className="h-4 w-4 text-cyan-400" />
             <span>Portail National de Recrutement & des Stages au Maroc</span>
           </div>
 
@@ -108,26 +108,26 @@ export default async function HomePage() {
       <section className="w-full bg-white border-b border-slate-200 py-6 px-4 sm:px-8 lg:px-14 shadow-sm">
         <div className="w-full max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div className="border-r border-slate-100 last:border-none">
-            <div className="text-3xl font-black text-[#0D2B45]">{totalActiveJobs > 0 ? totalActiveJobs : "Actif"}</div>
-            <div className="text-xs font-bold text-slate-600 mt-1 uppercase">Offres Actives Réelles</div>
+            <div className="text-3xl font-black text-[#0F172A]">{totalActiveJobs > 0 ? totalActiveJobs : "Actif"}</div>
+            <div className="text-xs font-bold text-slate-500 mt-1 uppercase">Offres Actives Réelles</div>
           </div>
           <div className="border-r border-slate-100 last:border-none">
-            <div className="text-3xl font-black text-[#1E5A6E]">{totalCompanies > 0 ? totalCompanies : "500+"}</div>
-            <div className="text-xs font-bold text-slate-600 mt-1 uppercase">Établissements Répertoriés</div>
+            <div className="text-3xl font-black text-blue-600">{totalCompanies > 0 ? totalCompanies : "500+"}</div>
+            <div className="text-xs font-bold text-slate-500 mt-1 uppercase">Établissements Répertoriés</div>
           </div>
           <div className="border-r border-slate-100 last:border-none">
-            <div className="text-3xl font-black text-[#0D2B45]">Audit ATS</div>
-            <div className="text-xs font-bold text-slate-600 mt-1 uppercase">Score CV & Diagnostic</div>
+            <div className="text-3xl font-black text-[#0F172A]">Audit ATS</div>
+            <div className="text-xs font-bold text-slate-500 mt-1 uppercase">Score CV & Diagnostic</div>
           </div>
           <div>
-            <div className="text-3xl font-black text-emerald-700">100% Maroc</div>
-            <div className="text-xs font-bold text-slate-600 mt-1 uppercase">Couverture Nationale</div>
+            <div className="text-3xl font-black text-emerald-600">100% Maroc</div>
+            <div className="text-xs font-bold text-slate-500 mt-1 uppercase">Couverture Nationale</div>
           </div>
         </div>
       </section>
 
       {/* ESPACE ÉTUDIANTS, LAURÉATS & PFE MAROC (Idea 2) */}
-      <section className="py-10 px-4 sm:px-8 lg:px-14 bg-gradient-to-r from-[#0D2B45] via-[#1E5A6E] to-[#0D2B45] text-white">
+      <section className="py-10 px-4 sm:px-8 lg:px-14 bg-gradient-to-r from-[#0A192F] via-[#1E293B] to-[#0A192F] text-white">
         <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2 text-center md:text-left">
             <div className="inline-flex items-center gap-2 rounded-full bg-cyan-400/20 border border-cyan-300/30 px-3.5 py-1 text-xs font-bold text-cyan-200">

@@ -77,42 +77,41 @@ export default function CompaniesDirectoryPage() {
 
       <main className="flex-1 mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-10 space-y-8">
         {/* Header */}
-        <div className="rounded-3xl border border-[#D1E3EC] bg-gradient-to-br from-[#FFFFFF] via-[#FFFFFF]/80 to-[#F4F8FA] p-8 sm:p-12 shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 -mr-16 -mt-16 h-64 w-64 rounded-full bg-[#0D2B45]/20 blur-3xl pointer-events-none" />
+        <div className="rounded-3xl border border-slate-200 bg-white p-8 sm:p-12 shadow-sm relative overflow-hidden">
           <div className="relative z-10 max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#0D2B45]/50 bg-[#0D2B45]/20 px-3 py-1 text-xs font-semibold text-[#1E5A6E]">
-              <Compass className="h-3.5 w-3.5" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-xs font-bold text-blue-700">
+              <Compass className="h-3.5 w-3.5 text-blue-600" />
               <span>Annuaire Officiel & Vérifié des Recruteurs au Maroc</span>
             </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
+            <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
               Découvrez les Entreprises qui recrutent
             </h1>
-            <p className="text-sm sm:text-base text-[#1E5A6E]/80 leading-relaxed">
-              Explorez les acteurs technologiques, industriels et innovants au Maroc et à l&apos;international.
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+              Explorez les acteurs technologiques, industriels et innovants au Maroc.
               Informations vérifiées avec coordonnées téléphoniques, adresses certifiées et opportunités de recrutement ouvertes.
             </p>
           </div>
         </div>
 
         {/* Search & Filters */}
-        <div className="rounded-2xl border border-[#D1E3EC] bg-[#FFFFFF]/90 p-5 shadow-xl space-y-4">
+        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm space-y-4">
           <div className="flex flex-col md:flex-row items-center gap-3">
             <div className="relative flex-1 w-full">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#1E5A6E]/60" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-blue-600" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && fetchCompanies(false)}
                 placeholder="Rechercher par nom d'entreprise ou secteur (ex: OCP, Capgemini, IA, Cloud...)"
-                className="w-full rounded-xl border border-[#D1E3EC] bg-[#F4F8FA] pl-10 pr-4 py-3 text-xs sm:text-sm text-slate-900 placeholder:text-slate-800/40 focus:outline-none focus:border-[#1E5A6E]"
+                className="w-full rounded-xl border border-slate-300 bg-[#F8FAFC] pl-10 pr-4 py-3 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:bg-white transition-all font-semibold"
               />
             </div>
 
             <div className="flex items-center gap-2 w-full md:w-auto">
               <button
                 onClick={() => fetchCompanies(false)}
-                className="flex-1 md:flex-none px-5 py-3 rounded-xl bg-gradient-to-r from-[#0D2B45] to-[#1E5A6E] text-xs font-bold text-white shadow-lg shadow-[#0D2B45]/25 hover:brightness-110 active:scale-95 transition-all cursor-pointer"
+                className="flex-1 md:flex-none px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-xs font-black text-white shadow-md shadow-blue-500/25 active:scale-95 transition-all cursor-pointer"
               >
                 Filtrer
               </button>
@@ -121,9 +120,9 @@ export default function CompaniesDirectoryPage() {
                 onClick={() => fetchCompanies(true)}
                 disabled={placesLoading}
                 title="Actualiser et explorer les entreprises du tissu économique marocain"
-                className="flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl border border-[#1E5A6E]/40 bg-[#0D2B45]/20 text-xs font-bold text-[#1E5A6E] hover:bg-[#0D2B45]/40 active:scale-95 transition-all disabled:opacity-50 cursor-pointer"
+                className="flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl border border-slate-300 bg-white text-xs font-bold text-slate-700 hover:border-blue-600 hover:text-blue-600 active:scale-95 transition-all disabled:opacity-50 cursor-pointer"
               >
-                <Compass className={`h-4 w-4 ${placesLoading ? "animate-spin" : ""}`} />
+                <Compass className={`h-4 w-4 ${placesLoading ? "animate-spin text-blue-600" : ""}`} />
                 <span>{placesLoading ? "Actualisation..." : "Actualiser l'Annuaire"}</span>
               </button>
             </div>
@@ -131,17 +130,17 @@ export default function CompaniesDirectoryPage() {
 
           {/* City Pills */}
           <div className="flex items-center gap-2 overflow-x-auto pb-1 pt-1 text-xs scrollbar-none">
-            <span className="text-slate-800/60 shrink-0 font-medium mr-1 flex items-center gap-1">
-              <MapPin className="h-3.5 w-3.5 text-[#1E5A6E]" /> Ville :
+            <span className="text-slate-500 shrink-0 font-bold mr-1 flex items-center gap-1">
+              <MapPin className="h-3.5 w-3.5 text-blue-600" /> Ville :
             </span>
             {MOROCCO_CITIES.map((city) => (
               <button
                 key={city}
                 onClick={() => setSelectedCity(city)}
-                className={`px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer shrink-0 ${
+                className={`px-3.5 py-1.5 rounded-xl font-bold transition-all cursor-pointer shrink-0 text-xs ${
                   selectedCity === city
-                    ? "bg-[#0D2B45] text-slate-900 shadow"
-                    : "bg-[#F4F8FA] text-slate-800/70 hover:text-slate-900 border border-[#D1E3EC]"
+                    ? "bg-blue-600 text-white shadow-sm"
+                    : "bg-slate-100 text-slate-700 hover:bg-slate-200 border border-transparent"
                 }`}
               >
                 {city}
@@ -287,7 +286,7 @@ export default function CompaniesDirectoryPage() {
 
                     <Link
                       href={`/companies/${company.slug}`}
-                      className="inline-flex items-center gap-1 px-3 py-2 rounded-xl bg-gradient-to-r from-[#0D2B45] to-[#1E5A6E] text-[11px] font-bold text-slate-900 shadow hover:brightness-110 active:scale-95 transition-all"
+                      className="inline-flex items-center gap-1 px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-xs font-bold text-white shadow-md shadow-blue-500/20 active:scale-95 transition-all cursor-pointer"
                     >
                       <span>Voir profil</span>
                     </Link>

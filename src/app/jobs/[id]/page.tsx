@@ -112,13 +112,13 @@ export default async function JobDetailPage({
                   )}
                 </div>
 
-                <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0D2B45] mt-1 leading-snug">
+                <h1 className="text-2xl sm:text-3xl font-black text-slate-900 mt-1 leading-snug">
                   {job.title}
                 </h1>
 
                 <div className="flex flex-wrap items-center gap-3 text-xs text-slate-600 mt-3">
                   <div className="flex items-center gap-1">
-                    <MapPin className="h-3.5 w-3.5 text-[#1E5A6E]" />
+                    <MapPin className="h-3.5 w-3.5 text-blue-600" />
                     <span>{job.city || job.location}, {job.country}</span>
                   </div>
                   <span>•</span>
@@ -129,8 +129,8 @@ export default async function JobDetailPage({
                   {formattedDeadline && (
                     <>
                       <span>•</span>
-                      <div className="flex items-center gap-1 text-[#1E5A6E] font-medium">
-                        <Clock className="h-3.5 w-3.5 text-[#1E5A6E]" />
+                      <div className="flex items-center gap-1 text-blue-600 font-medium">
+                        <Clock className="h-3.5 w-3.5 text-blue-600" />
                         <span>Date limite : {formattedDeadline}</span>
                       </div>
                     </>
@@ -141,14 +141,14 @@ export default async function JobDetailPage({
 
             {/* AI Match Score Pill if candidate has CV analyzed */}
             {job.matchAnalysis && (
-              <div className="rounded-2xl border border-[#1E5A6E]/35 bg-[#0D2B45]/20 p-4 text-center shrink-0">
-                <span className="text-[11px] font-bold text-[#1E5A6E] uppercase tracking-wider block">
+              <div className="rounded-2xl border border-blue-200 bg-blue-50/70 p-4 text-center shrink-0">
+                <span className="text-[11px] font-bold text-blue-700 uppercase tracking-wider block">
                   Score de Match CV
                 </span>
-                <span className="text-3xl font-black text-[#1E5A6E]">
+                <span className="text-3xl font-black text-blue-600">
                   {job.matchAnalysis.overallScore}%
                 </span>
-                <p className="text-[10px] text-[#1E5A6E]/80 mt-0.5">
+                <p className="text-[10px] text-blue-600/80 mt-0.5">
                   Calculé d&apos;après votre CV actif
                 </p>
               </div>
@@ -156,9 +156,9 @@ export default async function JobDetailPage({
           </div>
 
           {/* Metadata Badges Strip */}
-          <div className="mt-6 pt-6 border-t border-[#D1E3EC] flex flex-wrap items-center justify-between gap-4">
+          <div className="mt-6 pt-6 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4">
             <div className="flex flex-wrap gap-2 text-xs">
-              <span className="rounded-lg border border-[#0D2B45]/50 bg-[#0D2B45]/20 px-3 py-1 font-semibold text-[#1E5A6E]">
+              <span className="rounded-lg border border-blue-200 bg-blue-50 px-3 py-1 font-bold text-blue-700">
                 {job.opportunityType === "INTERNSHIP"
                   ? "Stage & PFE"
                   : job.opportunityType === "APPRENTICESHIP"
@@ -166,7 +166,7 @@ export default async function JobDetailPage({
                   : "Emploi"}
               </span>
 
-              <span className="rounded-lg border border-[#D1E3EC] bg-[#F4F8FA]/70 px-3 py-1 font-semibold text-slate-600">
+              <span className="rounded-lg border border-slate-200 bg-slate-100 px-3 py-1 font-semibold text-slate-700">
                 {job.workArrangement === "REMOTE"
                   ? "Télétravail complet (Remote)"
                   : job.workArrangement === "HYBRID"

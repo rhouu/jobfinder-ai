@@ -59,10 +59,10 @@ export default function RegisterPage() {
       <main className="flex-1 flex items-center justify-center p-4 py-12">
         <div className="w-full max-w-lg rounded-2xl border border-slate-200 bg-white p-8 shadow-xl">
           <div className="text-center mb-8">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0D2B45] text-white mb-4 shadow-md">
-              <Sparkles className="h-7 w-7 text-amber-500" />
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0F172A] to-[#1E293B] text-white mb-4 shadow-md border border-slate-700/50">
+              <Sparkles className="h-7 w-7 text-amber-400" />
             </div>
-            <h1 className="text-2xl font-black text-[#0D2B45]">Créer un compte JobFinder AI</h1>
+            <h1 className="text-2xl font-black text-slate-900">Créer un compte JobFinder AI</h1>
             <p className="text-xs font-semibold text-slate-500 mt-1.5">
               Rejoignez la plateforme et découvrez des opportunités adaptées à votre profil
             </p>
@@ -80,9 +80,9 @@ export default function RegisterPage() {
             <button
               type="button"
               onClick={() => setRole("CANDIDATE")}
-              className={`flex items-center justify-center gap-2 py-2.5 rounded-lg text-xs font-bold transition-all ${
+              className={`flex items-center justify-center gap-2 py-2.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                 role === "CANDIDATE"
-                  ? "bg-[#0D2B45] text-white shadow-sm"
+                  ? "bg-blue-600 text-white shadow-sm"
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
@@ -92,9 +92,9 @@ export default function RegisterPage() {
             <button
               type="button"
               onClick={() => setRole("EMPLOYER")}
-              className={`flex items-center justify-center gap-2 py-2.5 rounded-lg text-xs font-bold transition-all ${
+              className={`flex items-center justify-center gap-2 py-2.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                 role === "EMPLOYER"
-                  ? "bg-[#0D2B45] text-white shadow-sm"
+                  ? "bg-blue-600 text-white shadow-sm"
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
@@ -177,7 +177,7 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex items-center justify-center gap-2 rounded-xl bg-[#0D2B45] hover:bg-[#1E5A6E] py-3.5 font-black text-sm text-white shadow-md shadow-[#0D2B45]/20 active:scale-[0.99] transition-all disabled:opacity-50 cursor-pointer"
+              className="w-full flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 py-3.5 font-black text-sm text-white shadow-md shadow-blue-500/25 active:scale-[0.99] transition-all disabled:opacity-50 cursor-pointer"
             >
               <span>{loading ? "Création en cours..." : "Créer mon compte"}</span>
               <ArrowRight className="h-4 w-4" />
@@ -186,7 +186,7 @@ export default function RegisterPage() {
 
           <div className="mt-6 text-center text-xs font-semibold text-slate-600">
             Vous avez déjà un compte ?{" "}
-            <Link href="/auth/login" className="text-[#0D2B45] hover:underline font-bold">
+            <Link href="/auth/login" className="text-blue-600 hover:underline font-bold">
               Connectez-vous ici
             </Link>
           </div>

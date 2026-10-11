@@ -50,8 +50,8 @@ export function HeroSearch() {
       >
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
           {/* Keyword Input */}
-          <div className="md:col-span-5 flex items-center bg-[#F8FAFC] rounded-xl px-4 py-3.5 border border-slate-300 focus-within:border-[#0D2B45] focus-within:bg-white focus-within:ring-2 focus-within:ring-[#0D2B45]/10 transition-all">
-            <Search className="h-5 w-5 text-[#0D2B45] shrink-0 mr-3" />
+          <div className="md:col-span-5 flex items-center bg-[#F8FAFC] rounded-xl px-4 py-3.5 border border-slate-300 focus-within:border-blue-600 focus-within:bg-white focus-within:ring-2 focus-within:ring-blue-600/15 transition-all">
+            <Search className="h-5 w-5 text-blue-600 shrink-0 mr-3" />
             <input
               type="text"
               value={keyword}
@@ -62,8 +62,8 @@ export function HeroSearch() {
           </div>
 
           {/* Location Input */}
-          <div className="md:col-span-4 flex items-center bg-[#F8FAFC] rounded-xl px-4 py-3.5 border border-slate-300 focus-within:border-[#0D2B45] focus-within:bg-white focus-within:ring-2 focus-within:ring-[#0D2B45]/10 transition-all">
-            <MapPin className="h-5 w-5 text-[#1E5A6E] shrink-0 mr-3" />
+          <div className="md:col-span-4 flex items-center bg-[#F8FAFC] rounded-xl px-4 py-3.5 border border-slate-300 focus-within:border-blue-600 focus-within:bg-white focus-within:ring-2 focus-within:ring-blue-600/15 transition-all">
+            <MapPin className="h-5 w-5 text-blue-600 shrink-0 mr-3" />
             <input
               type="text"
               value={location}
@@ -73,12 +73,12 @@ export function HeroSearch() {
             />
           </div>
 
-          {/* Action Button: Deep Navy Blue #0D2B45 */}
+          {/* Action Button: Vibrant Royal Blue */}
           <div className="md:col-span-3">
             <button
               type="submit"
               disabled={isSearching}
-              className="w-full flex items-center justify-center gap-2 rounded-xl bg-[#0D2B45] hover:bg-[#1E5A6E] py-3.5 px-6 text-sm sm:text-base font-black text-white shadow-lg shadow-[#0D2B45]/25 active:scale-[0.99] transition-all disabled:opacity-70"
+              className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 py-3.5 px-6 text-sm sm:text-base font-black text-white shadow-lg shadow-blue-600/30 active:scale-[0.99] transition-all disabled:opacity-70 cursor-pointer"
             >
               {isSearching ? (
                 <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />

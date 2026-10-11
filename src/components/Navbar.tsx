@@ -64,12 +64,12 @@ export function Navbar() {
       <div className="w-full px-4 sm:px-8 lg:px-14 py-3.5 flex items-center justify-between">
         {/* Brand Logo with Moroccan Official Seal Motif */}
         <Link href="/" className="flex items-center gap-3 shrink-0">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#0D2B45] text-white shadow-md">
-            <Sparkles className="h-6 w-6 text-amber-500" />
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#0F172A] to-[#1E293B] text-white shadow-md border border-slate-700/50">
+            <Sparkles className="h-6 w-6 text-amber-400" />
           </div>
           <div className="flex flex-col">
-            <span className="text-xl font-black text-[#0D2B45] tracking-tight flex items-center gap-1.5">
-              JobFinder <span className="text-[#1E5A6E]">AI</span>
+            <span className="text-xl font-black text-[#0F172A] tracking-tight flex items-center gap-1.5">
+              JobFinder <span className="text-blue-600">AI</span>
             </span>
             <span className="text-[11px] text-slate-500 font-bold uppercase tracking-wider">
               Maroc & International
@@ -78,31 +78,31 @@ export function Navbar() {
         </Link>
 
         {/* Center: Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-8 text-[15px] font-bold text-[#0D2B45]">
+        <nav className="hidden lg:flex items-center gap-8 text-[15px] font-bold text-slate-700">
           <Link
             href="/jobs?type=JOB"
-            className="hover:text-[#1E5A6E] border-b-2 border-transparent hover:border-[#0D2B45] py-1 transition-all"
+            className="hover:text-blue-600 border-b-2 border-transparent hover:border-blue-600 py-1 transition-all"
           >
             {t.nav.findJobs}
           </Link>
 
           <Link
             href="/jobs?type=INTERNSHIP"
-            className="hover:text-[#1E5A6E] border-b-2 border-transparent hover:border-[#0D2B45] py-1 transition-all"
+            className="hover:text-blue-600 border-b-2 border-transparent hover:border-blue-600 py-1 transition-all"
           >
             {t.nav.internships}
           </Link>
 
           <Link
             href="/companies"
-            className="hover:text-[#1E5A6E] border-b-2 border-transparent hover:border-[#0D2B45] py-1 transition-all"
+            className="hover:text-blue-600 border-b-2 border-transparent hover:border-blue-600 py-1 transition-all"
           >
             Entreprises qui recrutent
           </Link>
 
           <Link
             href="/employer"
-            className="hover:text-[#1E5A6E] border-b-2 border-transparent hover:border-[#0D2B45] py-1 transition-all"
+            className="hover:text-blue-600 border-b-2 border-transparent hover:border-blue-600 py-1 transition-all"
           >
             {t.nav.forEmployers}
           </Link>
@@ -202,13 +202,13 @@ export function Navbar() {
             <div className="flex items-center gap-2">
               <Link
                 href="/auth/login"
-                className="rounded-xl px-4 py-2 text-xs font-bold text-[#0D2B45] hover:bg-slate-100 transition-colors"
+                className="rounded-xl px-4 py-2 text-xs font-bold text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors"
               >
                 Se connecter
               </Link>
               <Link
                 href="/auth/register"
-                className="rounded-xl bg-[#0D2B45] hover:bg-[#1E5A6E] px-5 py-2.5 text-xs font-black text-white shadow-md shadow-[#0D2B45]/20 transition-all hover:scale-[1.02]"
+                className="rounded-xl bg-blue-600 hover:bg-blue-700 px-5 py-2.5 text-xs font-black text-white shadow-md shadow-blue-500/25 transition-all hover:scale-[1.02] cursor-pointer"
               >
                 Créer un compte
               </Link>

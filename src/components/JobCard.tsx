@@ -194,10 +194,10 @@ export function JobCard({
             {/* Save Icon */}
             <button
               onClick={handleToggleSave}
-              className={`rounded-xl border p-2 transition-all ${
+              className={`rounded-xl border p-2 transition-all cursor-pointer ${
                 saved
-                  ? "border-[#0D2B45] bg-[#0D2B45] text-white"
-                  : "border-slate-200 bg-slate-50 text-slate-500 hover:border-[#0D2B45] hover:text-[#0D2B45]"
+                  ? "border-rose-500 bg-rose-500 text-white shadow-sm"
+                  : "border-slate-200 bg-slate-50 text-slate-400 hover:border-rose-300 hover:text-rose-500 hover:bg-rose-50"
               }`}
               title={saved ? "Enregistré" : "Sauvegarder"}
             >
@@ -207,14 +207,14 @@ export function JobCard({
 
           {/* Title */}
           <Link href={`/jobs/${id}`} className="mt-3.5 block group">
-            <h3 className="text-base sm:text-lg font-black text-[#0D2B45] group-hover:text-[#1E5A6E] transition-colors leading-snug line-clamp-2">
+            <h3 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-blue-600 transition-colors leading-snug line-clamp-2">
               {title}
             </h3>
           </Link>
 
           {/* Badges strip */}
           <div className="mt-3 flex flex-wrap gap-2 text-xs font-bold">
-            <span className="rounded-lg bg-[#E6F0F6] text-[#0D2B45] px-2.5 py-1 border border-[#1E5A6E]/20">
+            <span className="rounded-lg bg-blue-50 text-blue-800 px-2.5 py-1 border border-blue-200">
               {typeLabels[opportunityType] || opportunityType}
             </span>
             <span className="rounded-lg bg-slate-100 text-slate-700 px-2.5 py-1">
@@ -286,7 +286,7 @@ export function JobCard({
           <div className="flex items-center gap-2">
             <Link
               href={`/jobs/${id}`}
-              className="rounded-xl border-2 border-[#0D2B45] bg-white px-3.5 py-1.5 text-xs font-black text-[#0D2B45] hover:bg-[#E6F0F6] transition-all flex items-center gap-1"
+              className="rounded-xl border border-slate-300 bg-white px-3.5 py-1.5 text-xs font-bold text-slate-700 hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50/50 transition-all flex items-center gap-1"
             >
               <span>Consulter l&apos;offre</span>
               <ChevronRight className="h-3.5 w-3.5" />
@@ -294,7 +294,7 @@ export function JobCard({
 
             <button
               onClick={() => setIsModalOpen(true)}
-              className="flex items-center gap-1 rounded-xl bg-[#0D2B45] hover:bg-[#1E5A6E] px-4 py-2 text-xs font-black text-white shadow-sm transition-all cursor-pointer"
+              className="flex items-center gap-1 rounded-xl bg-blue-600 hover:bg-blue-700 px-4 py-2 text-xs font-black text-white shadow-md shadow-blue-500/20 transition-all cursor-pointer hover:scale-[1.02]"
             >
               <span>Postuler</span>
               <ArrowUpRight className="h-3.5 w-3.5" />

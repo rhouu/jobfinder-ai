@@ -56,18 +56,18 @@ export function JobDetailActions({ job }: JobDetailActionsProps) {
         <button
           type="button"
           onClick={() => setIsInterviewModalOpen(true)}
-          className="flex items-center gap-2 rounded-xl border-2 border-[#0D2B45] bg-white hover:bg-[#E6F0F6] px-4 py-3 text-xs font-black text-[#0D2B45] transition-all cursor-pointer"
+          className="flex items-center gap-2 rounded-xl border border-slate-300 bg-white hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50/40 px-4 py-3 text-xs font-bold text-slate-700 transition-all cursor-pointer"
         >
-          <HelpCircle className="h-4 w-4 text-[#1E5A6E]" />
+          <HelpCircle className="h-4 w-4 text-blue-600" />
           <span>Simuler Entretien IA</span>
         </button>
 
         <button
           type="button"
           onClick={() => setIsModalOpen(true)}
-          className="flex items-center gap-2 rounded-xl bg-[#0D2B45] hover:bg-[#1E5A6E] px-5 py-3 text-xs font-black text-white shadow-md transition-all cursor-pointer"
+          className="flex items-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 px-6 py-3 text-xs font-black text-white shadow-md shadow-blue-500/25 transition-all cursor-pointer hover:scale-[1.02]"
         >
-          <Sparkles className="h-4 w-4 text-cyan-300" />
+          <Sparkles className="h-4 w-4 text-amber-300" />
           <span>Postuler / Lettre IA</span>
         </button>
       </div>

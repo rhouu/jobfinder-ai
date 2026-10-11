@@ -52,10 +52,10 @@ export default function LoginPage() {
       <main className="flex-1 flex items-center justify-center p-4 py-12">
         <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 shadow-xl">
           <div className="text-center mb-8">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0D2B45] text-white mb-4 shadow-md">
-              <Sparkles className="h-7 w-7 text-amber-500" />
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0F172A] to-[#1E293B] text-white mb-4 shadow-md border border-slate-700/50">
+              <Sparkles className="h-7 w-7 text-amber-400" />
             </div>
-            <h1 className="text-2xl font-black text-[#0D2B45]">Connexion à JobFinder AI</h1>
+            <h1 className="text-2xl font-black text-slate-900">Connexion à JobFinder AI</h1>
             <p className="text-xs font-semibold text-slate-500 mt-1.5">
               Accédez à vos candidatures, opportunités sauvegardées et profil
             </p>
@@ -81,7 +81,7 @@ export default function LoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="nom@exemple.com"
-                  className="w-full rounded-xl border border-slate-300 bg-[#F8FAFC] pl-10 pr-3.5 py-3 text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#0D2B45] focus:bg-white focus:ring-2 focus:ring-[#0D2B45]/10"
+                  className="w-full rounded-xl border border-slate-300 bg-[#F8FAFC] pl-10 pr-3.5 py-3 text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:bg-white focus:ring-2 focus:ring-blue-600/10"
                 />
               </div>
             </div>
@@ -98,7 +98,7 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full rounded-xl border border-slate-300 bg-[#F8FAFC] pl-10 pr-3.5 py-3 text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#0D2B45] focus:bg-white focus:ring-2 focus:ring-[#0D2B45]/10"
+                  className="w-full rounded-xl border border-slate-300 bg-[#F8FAFC] pl-10 pr-3.5 py-3 text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:bg-white focus:ring-2 focus:ring-blue-600/10"
                 />
               </div>
             </div>
@@ -106,7 +106,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex items-center justify-center gap-2 rounded-xl bg-[#0D2B45] hover:bg-[#1E5A6E] py-3.5 font-black text-sm text-white shadow-md shadow-[#0D2B45]/20 active:scale-[0.99] transition-all disabled:opacity-50 cursor-pointer"
+              className="w-full flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 py-3.5 font-black text-sm text-white shadow-md shadow-blue-500/25 active:scale-[0.99] transition-all disabled:opacity-50 cursor-pointer"
             >
               <span>{loading ? "Connexion..." : "Se connecter"}</span>
               <ArrowRight className="h-4 w-4" />
@@ -115,7 +115,7 @@ export default function LoginPage() {
 
           <div className="mt-6 text-center text-xs font-semibold text-slate-600">
             Pas encore de compte ?{" "}
-            <Link href="/auth/register" className="text-[#0D2B45] hover:underline font-bold">
+            <Link href="/auth/register" className="text-blue-600 hover:underline font-bold">
               Inscrivez-vous gratuitement
             </Link>
           </div>
