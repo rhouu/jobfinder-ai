@@ -33,7 +33,7 @@ export default function LoginPage() {
         } else if (data.user?.role === "ADMIN") {
           window.location.href = "/admin";
         } else {
-          window.location.href = "/jobs";
+          window.location.href = "/dashboard";
         }
       } else {
         setError(data.error || "Identifiants invalides.");

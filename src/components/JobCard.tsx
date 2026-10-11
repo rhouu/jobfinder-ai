@@ -110,6 +110,7 @@ export function JobCard({
           ? Array.from(new Set([...localSaved, id]))
           : localSaved.filter((jid) => jid !== id);
         localStorage.setItem("saved_jobs", JSON.stringify(updated));
+        window.dispatchEvent(new CustomEvent("saved_jobs_updated", { detail: updated }));
       } catch {}
     }
 

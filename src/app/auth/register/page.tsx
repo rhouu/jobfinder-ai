@@ -40,7 +40,7 @@ export default function RegisterPage() {
         if (role === "EMPLOYER") {
           window.location.href = "/employer";
         } else {
-          window.location.href = "/jobs";
+          window.location.href = "/dashboard";
         }
       } else {
         setError(data.error || "Erreur lors de l'inscription.");

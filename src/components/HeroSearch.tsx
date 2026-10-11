@@ -93,9 +93,9 @@ export function HeroSearch() {
         </div>
 
         {/* Quick select filters line */}
-        <div className="mt-3.5 pt-3.5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="font-bold text-slate-500">Suggestions rapides :</span>
+        <div className="mt-3.5 pt-3.5 border-t border-slate-100 flex items-center justify-between gap-3 text-xs">
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 max-w-full flex-nowrap sm:flex-wrap scrollbar-none">
+            <span className="font-bold text-slate-500 shrink-0">Suggestions rapides :</span>
             {[
               "Stages PFE Casablanca",
               "Ingénieur Génie Civil",
@@ -109,7 +109,7 @@ export function HeroSearch() {
                   setKeyword(q);
                   router.push(`/jobs?q=${encodeURIComponent(q)}`);
                 }}
-                className="rounded-lg bg-slate-100 hover:bg-[#E6F0F6] hover:text-[#0D2B45] px-2.5 py-1 text-slate-700 font-semibold transition-colors"
+                className="shrink-0 rounded-lg bg-slate-100 hover:bg-[#E6F0F6] hover:text-[#0D2B45] px-2.5 py-1 text-slate-700 font-semibold transition-colors"
               >
                 {q}
               </button>

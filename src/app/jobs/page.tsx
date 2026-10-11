@@ -83,6 +83,36 @@ function JobsSearchContent() {
   const [verifiedOnly, setVerifiedOnly] = useState(searchParams.get("verifiedOnly") === "true");
   const [sort, setSort] = useState(searchParams.get("sort") || "relevance");
   const [showMobileFilter, setShowMobileFilter] = useState(false);
+  const [favoritesOnly, setFavoritesOnly] = useState(false);
+  const [savedJobIds, setSavedJobIds] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const localSaved = JSON.parse(localStorage.getItem("saved_jobs") || "[]");
+        setSavedJobIds(localSaved);
+      } catch {}
+
+      const handleUpdate = (e: Event) => {
+        const customEvent = e as CustomEvent<string[]>;
+        if (customEvent.detail) {
+          setSavedJobIds(customEvent.detail);
+        } else {
+          try {
+            const fresh = JSON.parse(localStorage.getItem("saved_jobs") || "[]");
+            setSavedJobIds(fresh);
+          } catch {}
+        }
+      };
+
+      window.addEventListener("saved_jobs_updated", handleUpdate);
+      return () => window.removeEventListener("saved_jobs_updated", handleUpdate);
+    }
+  }, []);
+
+  const displayedJobs = favoritesOnly
+    ? jobs.filter((j) => savedJobIds.includes(j.id))
+    : jobs;
 
   const categories = [
     "Informatique & Tech",
@@ -256,6 +286,22 @@ function JobsSearchContent() {
             </span>
             <button
               onClick={() => {
+                try {
+                  const localSaved = JSON.parse(localStorage.getItem("saved_jobs") || "[]");
+                  setSavedJobIds(localSaved);
+                } catch {}
+                setFavoritesOnly(!favoritesOnly);
+              }}
+              className={`rounded-lg border px-3 py-1 text-xs font-semibold transition-all cursor-pointer ${
+                favoritesOnly
+                  ? "bg-rose-500 text-white border-rose-400 shadow-md font-bold"
+                  : "bg-white/10 hover:bg-white/20 border-white/20 text-rose-200"
+              }`}
+            >
+              ❤️ Mes Favoris ({savedJobIds.length})
+            </button>
+            <button
+              onClick={() => {
                 setType("INTERNSHIP");
                 setQuery("PFE");
                 fetchJobs();
@@ -427,7 +473,7 @@ function JobsSearchContent() {
             {/* Sorting bar */}
             <div className="flex items-center justify-between bg-white px-5 py-3.5 rounded-2xl border border-slate-200 shadow-sm text-xs">
               <span className="font-bold text-slate-700">
-                <strong>{total}</strong> offres trouvées
+                <strong>{favoritesOnly ? displayedJobs.length : total}</strong> {favoritesOnly ? "offres sauvegardées" : "offres trouvées"}
               </span>
 
               <div className="flex items-center gap-2">
@@ -455,23 +501,43 @@ function JobsSearchContent() {
                   />
                 ))}
               </div>
-            ) : jobs.length === 0 ? (
+            ) : displayedJobs.length === 0 ? (
               <div className="text-center py-20 rounded-2xl bg-white border border-slate-200 p-8 shadow-sm">
-                <Building2 className="h-12 w-12 text-slate-400 mx-auto mb-3" />
-                <h3 className="text-lg font-bold text-slate-800">Aucune offre ne correspond</h3>
-                <p className="text-xs text-slate-500 mt-1 max-w-md mx-auto">
-                  Modifiez vos critères de recherche ou cliquez sur &laquo; Actualiser &raquo; pour synchroniser les dernières offres disponibles.
-                </p>
-                <button
-                  onClick={handleResetFilters}
-                  className="mt-5 rounded-xl bg-[#0D2B45] px-5 py-2.5 text-xs font-black text-white hover:bg-[#1E5A6E] transition-colors"
-                >
-                  Réinitialiser les filtres
-                </button>
+                {favoritesOnly ? (
+                  <>
+                    <div className="w-12 h-12 rounded-full bg-rose-50 flex items-center justify-center mx-auto mb-3">
+                      <span className="text-2xl">❤️</span>
+                    </div>
+                    <h3 className="text-lg font-bold text-slate-800">Aucun favori enregistré</h3>
+                    <p className="text-xs text-slate-500 mt-1 max-w-md mx-auto">
+                      Cliquez sur l&apos;icône ❤️ sur n&apos;importe quelle offre d&apos;emploi ou de stage pour la retrouver instantanément ici.
+                    </p>
+                    <button
+                      onClick={() => setFavoritesOnly(false)}
+                      className="mt-5 rounded-xl bg-[#0D2B45] px-5 py-2.5 text-xs font-black text-white hover:bg-[#1E5A6E] transition-colors"
+                    >
+                      Explorer toutes les offres
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Building2 className="h-12 w-12 text-slate-400 mx-auto mb-3" />
+                    <h3 className="text-lg font-bold text-slate-800">Aucune offre ne correspond</h3>
+                    <p className="text-xs text-slate-500 mt-1 max-w-md mx-auto">
+                      Modifiez vos critères de recherche ou cliquez sur &laquo; Actualiser &raquo; pour synchroniser les dernières offres disponibles.
+                    </p>
+                    <button
+                      onClick={handleResetFilters}
+                      className="mt-5 rounded-xl bg-[#0D2B45] px-5 py-2.5 text-xs font-black text-white hover:bg-[#1E5A6E] transition-colors"
+                    >
+                      Réinitialiser les filtres
+                    </button>
+                  </>
+                )}
               </div>
             ) : (
               <div className="space-y-4">
-                {jobs.map((job, idx) => (
+                {displayedJobs.map((job, idx) => (
                   <JobCard
                     key={job.id}
                     id={job.id}

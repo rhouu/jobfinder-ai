@@ -13,7 +13,6 @@ import {
   ShieldCheck,
   Send,
 } from "lucide-react";
-import { useI18n } from "@/lib/i18n";
 
 export interface ApplicationModalProps {
   job: {
@@ -28,16 +27,10 @@ export interface ApplicationModalProps {
 }
 
 export function ApplicationModal({ job, onClose }: ApplicationModalProps) {
-  const { t } = useI18n();
-
-  const [method, setMethod] = useState<"EXTERNAL" | "ASSISTED" | "AUTO_APPLY">(
-    "ASSISTED"
-  );
-  const [selectedCvId, setSelectedCvId] = useState<string>("");
+  const [method] = useState<"EXTERNAL" | "ASSISTED" | "AUTO_APPLY">("ASSISTED");
+  const [selectedCvId] = useState<string>("");
   const [coverLetter, setCoverLetter] = useState<string>("");
   const [isGeneratingLetter, setIsGeneratingLetter] = useState(false);
-  const [notes, setNotes] = useState("");
-  const [candidateApproved, setCandidateApproved] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittedSuccess, setSubmittedSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -92,39 +85,7 @@ export function ApplicationModal({ job, onClose }: ApplicationModalProps) {
     }
   };
 
-  const handleConfirmExternalSubmission = async () => {
-    setIsSubmitting(true);
-    try {
-      const res = await fetch("/api/applications", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          jobId: job.id,
-          method: "EXTERNAL",
-          candidateApproved: true,
-          externalConfirmed: true,
-          notes,
-        }),
-      });
-      if (res.ok) {
-        setSubmittedSuccess(true);
-      } else {
-        const d = await res.json();
-        setError(d.error || "Erreur lors de la validation.");
-      }
-    } catch {
-      setError("Erreur réseau.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   const handleInPlatformSubmit = async () => {
-    if (!candidateApproved) {
-      setError("Vous devez explicitement vérifier et approuver votre candidature avant soumission.");
-      return;
-    }
-
     setIsSubmitting(true);
     setError(null);
     try {
@@ -137,7 +98,6 @@ export function ApplicationModal({ job, onClose }: ApplicationModalProps) {
           cvDocumentId: selectedCvId || undefined,
           coverLetterText: coverLetter || undefined,
           candidateApproved: true,
-          notes,
         }),
       });
 
