@@ -73,6 +73,7 @@ export async function POST(req: NextRequest) {
     });
   } catch (error) {
     console.error("Register error:", error);
-    return NextResponse.json({ error: "Erreur lors de l'inscription." }, { status: 400 });
+    const message = error instanceof Error ? error.message : "Erreur lors de l'inscription.";
+    return NextResponse.json({ error: `Erreur: ${message}` }, { status: 400 });
   }
 }
