@@ -18,6 +18,8 @@ import {
   ShieldCheck,
   CheckCircle2,
   FileCheck2,
+  GraduationCap,
+  Rocket,
 } from "lucide-react";
 import { JobStatus } from "@prisma/client";
 
@@ -29,25 +31,45 @@ type FeaturedJobItem = Awaited<ReturnType<typeof prisma.job.findMany<{
 
 export default async function HomePage() {
   let featuredJobs: FeaturedJobItem[] = [];
+  let totalActiveJobs = 0;
+  let totalCompanies = 0;
+  let categoryCounts: Record<string, number> = {};
+
   try {
-    featuredJobs = await prisma.job.findMany({
-      where: { status: JobStatus.ACTIVE },
-      take: 6,
-      orderBy: { publicationDate: "desc" },
-      include: { skills: true, company: true },
-    });
+    const [jobs, jobCount, compCount, catGroups] = await Promise.all([
+      prisma.job.findMany({
+        where: { status: JobStatus.ACTIVE },
+        take: 6,
+        orderBy: { publicationDate: "desc" },
+        include: { skills: true, company: true },
+      }),
+      prisma.job.count({ where: { status: JobStatus.ACTIVE } }),
+      prisma.company.count(),
+      prisma.job.groupBy({
+        by: ["category"],
+        where: { status: JobStatus.ACTIVE },
+        _count: { _all: true },
+      }),
+    ]);
+
+    featuredJobs = jobs;
+    totalActiveJobs = jobCount;
+    totalCompanies = compCount;
+    for (const g of catGroups) {
+      categoryCounts[g.category] = g._count._all;
+    }
   } catch (err) {
     console.warn("Database not reachable during page load, continuing with empty jobs:", err);
     featuredJobs = [];
   }
 
   const categories = [
-    { name: "Informatique & Tech", icon: Code2, count: 28, tag: "Informatique & Tech" },
-    { name: "Data & IA", icon: Database, count: 19, tag: "Data & Intelligence Artificielle" },
-    { name: "Cloud & DevOps", icon: Cloud, count: 14, tag: "Cloud & DevOps" },
-    { name: "Cybersécurité", icon: Shield, count: 11, tag: "Cybersécurité & Réseaux" },
-    { name: "Banque & Fintech", icon: TrendingUp, count: 16, tag: "Banque & Fintech" },
-    { name: "Ingénierie & Industrie", icon: Cpu, count: 22, tag: "Industrie & Ingénierie" },
+    { name: "Informatique & Tech", icon: Code2, count: categoryCounts["Informatique & Tech"] ?? 0, tag: "Informatique & Tech" },
+    { name: "Data & IA", icon: Database, count: categoryCounts["Data & Intelligence Artificielle"] ?? 0, tag: "Data & Intelligence Artificielle" },
+    { name: "Cloud & DevOps", icon: Cloud, count: categoryCounts["Cloud & DevOps"] ?? 0, tag: "Cloud & DevOps" },
+    { name: "Cybersécurité", icon: Shield, count: categoryCounts["Cybersécurité & Réseaux"] ?? 0, tag: "Cybersécurité & Réseaux" },
+    { name: "Banque & Fintech", icon: TrendingUp, count: categoryCounts["Banque & Fintech"] ?? 0, tag: "Banque & Fintech" },
+    { name: "Ingénierie & Industrie", icon: Cpu, count: categoryCounts["Industrie & Ingénierie"] ?? 0, tag: "Industrie & Ingénierie" },
   ];
 
   return (
@@ -86,20 +108,61 @@ export default async function HomePage() {
       <section className="w-full bg-white border-b border-slate-200 py-6 px-4 sm:px-8 lg:px-14 shadow-sm">
         <div className="w-full max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div className="border-r border-slate-100 last:border-none">
-            <div className="text-3xl font-black text-[#0D2B45]">100%</div>
-            <div className="text-xs font-bold text-slate-600 mt-1 uppercase">Offres Réelles Vérifiées</div>
+            <div className="text-3xl font-black text-[#0D2B45]">{totalActiveJobs > 0 ? totalActiveJobs : "Actif"}</div>
+            <div className="text-xs font-bold text-slate-600 mt-1 uppercase">Offres Actives Réelles</div>
           </div>
           <div className="border-r border-slate-100 last:border-none">
-            <div className="text-3xl font-black text-[#1E5A6E]">500+</div>
+            <div className="text-3xl font-black text-[#1E5A6E]">{totalCompanies > 0 ? totalCompanies : "500+"}</div>
             <div className="text-xs font-bold text-slate-600 mt-1 uppercase">Établissements Répertoriés</div>
           </div>
           <div className="border-r border-slate-100 last:border-none">
-            <div className="text-3xl font-black text-[#0D2B45]">Gemini IA</div>
-            <div className="text-xs font-bold text-slate-600 mt-1 uppercase">Analyse CV & Matching</div>
+            <div className="text-3xl font-black text-[#0D2B45]">Audit ATS</div>
+            <div className="text-xs font-bold text-slate-600 mt-1 uppercase">Score CV & Diagnostic</div>
           </div>
           <div>
-            <div className="text-3xl font-black text-emerald-700">Maroc</div>
+            <div className="text-3xl font-black text-emerald-700">100% Maroc</div>
             <div className="text-xs font-bold text-slate-600 mt-1 uppercase">Couverture Nationale</div>
+          </div>
+        </div>
+      </section>
+
+      {/* ESPACE ÉTUDIANTS, LAURÉATS & PFE MAROC (Idea 2) */}
+      <section className="py-10 px-4 sm:px-8 lg:px-14 bg-gradient-to-r from-[#0D2B45] via-[#1E5A6E] to-[#0D2B45] text-white">
+        <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="space-y-2 text-center md:text-left">
+            <div className="inline-flex items-center gap-2 rounded-full bg-cyan-400/20 border border-cyan-300/30 px-3.5 py-1 text-xs font-bold text-cyan-200">
+              <GraduationCap className="h-4 w-4 text-cyan-300" />
+              <span>Spécial Étudiants, Lauréats & Écoles du Maroc</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white">
+              Préparez votre PFE & Premier Emploi
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-200 max-w-2xl">
+              Filtrez instantanément les stages PFE 2026, opportunités de pré-embauche et postes juniors adaptés aux écoles marocaines (OFPPT, ENSIAS, EMSI, FST, ENCG...).
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-3 shrink-0">
+            <Link
+              href="/jobs?type=INTERNSHIP&pfe=true"
+              className="rounded-xl bg-white text-[#0D2B45] hover:bg-slate-100 px-5 py-3 text-xs sm:text-sm font-black shadow-lg transition-all flex items-center gap-2"
+            >
+              <GraduationCap className="h-4 w-4 text-[#1E5A6E]" />
+              <span>Stages PFE 2026</span>
+            </Link>
+            <Link
+              href="/jobs?type=INTERNSHIP&paidOnly=true"
+              className="rounded-xl bg-[#0D2B45]/60 hover:bg-[#0D2B45] border border-cyan-300/40 px-5 py-3 text-xs sm:text-sm font-bold text-white transition-all flex items-center gap-2"
+            >
+              <Rocket className="h-4 w-4 text-cyan-300" />
+              <span>Stages Rémunérés</span>
+            </Link>
+            <Link
+              href="/jobs?experience=0"
+              className="rounded-xl bg-[#0D2B45]/60 hover:bg-[#0D2B45] border border-cyan-300/40 px-5 py-3 text-xs sm:text-sm font-bold text-white transition-all flex items-center gap-2"
+            >
+              <span>Premier Emploi (0-2 ans)</span>
+            </Link>
           </div>
         </div>
       </section>
@@ -253,7 +316,7 @@ export default async function HomePage() {
               </div>
               <h3 className="text-lg font-bold text-[#0D2B45]">Candidature Directe</h3>
               <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                Postulez directement sur les plateformes officielles ou contactez les entreprises grâce au module LeadFinder.
+                Postulez en un clic sur les plateformes officielles ou contactez directement les recruteurs par WhatsApp et Téléphone.
               </p>
             </div>
           </div>

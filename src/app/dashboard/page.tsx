@@ -15,7 +15,27 @@ import {
   AlertCircle,
   ExternalLink,
   Send,
+  Award,
+  TrendingUp,
+  AlertTriangle,
+  Lightbulb,
+  Gauge,
+  Check,
 } from "lucide-react";
+
+interface AtsAuditResult {
+  score: number;
+  level: "Excellent" | "Très bon" | "Moyen" | "À améliorer";
+  strengths: string[];
+  weaknesses: string[];
+  recommendations: string[];
+  breakdown: {
+    formatting: number;
+    skillsImpact: number;
+    contactCompleteness: number;
+    educationExperience: number;
+  };
+}
 
 interface UserProfile {
   id: string;
@@ -74,9 +94,30 @@ export default function CandidateDashboardPage() {
   const [isMatching, setIsMatching] = useState(false);
   const [matchDoneMsg, setMatchDoneMsg] = useState<string | null>(null);
 
+  // ATS CV Audit state
+  const [atsAudit, setAtsAudit] = useState<AtsAuditResult | null>(null);
+  const [loadingAts, setLoadingAts] = useState(false);
+
   useEffect(() => {
     loadData();
   }, []);
+
+  const fetchAtsAudit = async () => {
+    setLoadingAts(true);
+    try {
+      const res = await fetch("/api/cv/ats-analyze");
+      if (res.ok) {
+        const data = await res.json();
+        if (data.audit) {
+          setAtsAudit(data.audit);
+        }
+      }
+    } catch (e) {
+      console.warn("ATS audit fetch error:", e);
+    } finally {
+      setLoadingAts(false);
+    }
+  };
 
   const loadData = async () => {
     setLoading(true);
@@ -94,6 +135,11 @@ export default function CandidateDashboardPage() {
       if (appRes.ok) {
         const appData = await appRes.json();
         setApplications(appData.applications || []);
+      }
+
+      // If user has CV, load ATS audit
+      if (meData.user?.cvDocuments && meData.user.cvDocuments.length > 0) {
+        fetchAtsAudit();
       }
     } catch (err) {
       console.error(err);
@@ -130,6 +176,7 @@ export default function CandidateDashboardPage() {
       if (res.ok) {
         setUploadSuccess(true);
         loadData();
+        fetchAtsAudit();
       } else {
         setUploadError(data.error || "Erreur lors de l'upload du CV.");
       }
@@ -383,6 +430,115 @@ export default function CandidateDashboardPage() {
                 </button>
               </form>
             </div>
+
+            {/* ATS CV SCORE & DIAGNOSTIC SIMULATOR (Idea 1) */}
+            {atsAudit && (
+              <div className="rounded-3xl border border-[#1E5A6E]/30 bg-white p-6 sm:p-8 shadow-sm space-y-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+                  <div>
+                    <div className="inline-flex items-center gap-1.5 rounded-full bg-[#E6F0F6] px-3 py-1 text-xs font-bold text-[#0D2B45] mb-2">
+                      <Gauge className="h-3.5 w-3.5 text-[#1E5A6E]" />
+                      <span>Audit ATS & Diagnostic Marché Marocain</span>
+                    </div>
+                    <h3 className="text-xl font-black text-[#0D2B45]">
+                      Score d&apos;efficacité ATS de votre CV
+                    </h3>
+                    <p className="text-xs text-slate-500 mt-1">
+                      Évalue la lisibilité de votre document par les logiciels de recrutement et sa pertinence pour les recruteurs au Maroc.
+                    </p>
+                  </div>
+
+                  <div className="flex items-center gap-4 bg-[#F4F8FA] border border-slate-200 rounded-2xl p-4">
+                    <div className="text-right">
+                      <span className="text-[11px] font-bold uppercase text-slate-500 block">Niveau global</span>
+                      <span className={`text-sm font-black ${
+                        atsAudit.score >= 70 ? "text-emerald-700" : atsAudit.score >= 50 ? "text-amber-700" : "text-rose-700"
+                      }`}>
+                        {atsAudit.level}
+                      </span>
+                    </div>
+                    <div className="h-14 w-14 rounded-2xl bg-[#0D2B45] text-white flex items-center justify-center text-xl font-black shadow-md">
+                      {atsAudit.score}%
+                    </div>
+                  </div>
+                </div>
+
+                {/* Sub-scores breakdown */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <div className="p-3.5 rounded-2xl bg-[#F8FAFC] border border-slate-200">
+                    <span className="text-[11px] font-bold text-slate-500 block">Structure & Format</span>
+                    <span className="text-lg font-black text-[#0D2B45]">{atsAudit.breakdown.formatting} / 25</span>
+                  </div>
+                  <div className="p-3.5 rounded-2xl bg-[#F8FAFC] border border-slate-200">
+                    <span className="text-[11px] font-bold text-slate-500 block">Impact Compétences</span>
+                    <span className="text-lg font-black text-[#0D2B45]">{atsAudit.breakdown.skillsImpact} / 35</span>
+                  </div>
+                  <div className="p-3.5 rounded-2xl bg-[#F8FAFC] border border-slate-200">
+                    <span className="text-[11px] font-bold text-slate-500 block">Coordonnées & Contact</span>
+                    <span className="text-lg font-black text-[#0D2B45]">{atsAudit.breakdown.contactCompleteness} / 20</span>
+                  </div>
+                  <div className="p-3.5 rounded-2xl bg-[#F8FAFC] border border-slate-200">
+                    <span className="text-[11px] font-bold text-slate-500 block">Formation & Expériences</span>
+                    <span className="text-lg font-black text-[#0D2B45]">{atsAudit.breakdown.educationExperience} / 20</span>
+                  </div>
+                </div>
+
+                {/* Feedback 3 Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                  {/* Points Forts */}
+                  <div className="p-5 rounded-2xl bg-emerald-50/70 border border-emerald-200 space-y-3">
+                    <div className="flex items-center gap-2 text-emerald-800 font-black text-sm">
+                      <Check className="h-4 w-4" />
+                      <h4>Points Forts Détectés</h4>
+                    </div>
+                    <ul className="space-y-2 text-xs text-emerald-950 font-medium">
+                      {atsAudit.strengths.map((s, idx) => (
+                        <li key={idx} className="flex items-start gap-1.5">
+                          <span className="text-emerald-600 font-bold">•</span>
+                          <span>{s}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Points à Améliorer */}
+                  <div className="p-5 rounded-2xl bg-amber-50/70 border border-amber-200 space-y-3">
+                    <div className="flex items-center gap-2 text-amber-800 font-black text-sm">
+                      <AlertTriangle className="h-4 w-4" />
+                      <h4>Points à Optimiser</h4>
+                    </div>
+                    <ul className="space-y-2 text-xs text-amber-950 font-medium">
+                      {atsAudit.weaknesses.length > 0 ? (
+                        atsAudit.weaknesses.map((w, idx) => (
+                          <li key={idx} className="flex items-start gap-1.5">
+                            <span className="text-amber-600 font-bold">•</span>
+                            <span>{w}</span>
+                          </li>
+                        ))
+                      ) : (
+                        <li className="text-slate-500 italic">Aucune faiblesse majeure détectée.</li>
+                      )}
+                    </ul>
+                  </div>
+
+                  {/* Recommandations Recrutement Maroc */}
+                  <div className="p-5 rounded-2xl bg-[#E6F0F6] border border-[#B7D4E6] space-y-3">
+                    <div className="flex items-center gap-2 text-[#0D2B45] font-black text-sm">
+                      <Lightbulb className="h-4 w-4 text-[#1E5A6E]" />
+                      <h4>Conseils Spécifiques Maroc</h4>
+                    </div>
+                    <ul className="space-y-2 text-xs text-slate-800 font-medium">
+                      {atsAudit.recommendations.map((r, idx) => (
+                        <li key={idx} className="flex items-start gap-1.5">
+                          <span className="text-[#1E5A6E] font-bold">•</span>
+                          <span>{r}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Extracted Skills overview */}
             <div className="rounded-2xl border border-[#D1E3EC] bg-[#FFFFFF]/80 p-6 space-y-4">

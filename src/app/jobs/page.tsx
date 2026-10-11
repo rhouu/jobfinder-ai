@@ -17,6 +17,7 @@ import {
   Sparkles,
   Building2,
   RefreshCw,
+  GraduationCap,
 } from "lucide-react";
 
 interface JobItem {
@@ -245,6 +246,53 @@ function JobsSearchContent() {
               </button>
             </div>
           </form>
+
+          {/* Quick Filter Badges (PFE, Étudiants, Premier Emploi, Rémunéré) */}
+          <div className="flex flex-wrap items-center gap-2 mt-4 pt-1">
+            <span className="text-xs font-bold text-slate-300 mr-1 flex items-center gap-1">
+              <GraduationCap className="h-3.5 w-3.5 text-cyan-300" />
+              Accès Rapide :
+            </span>
+            <button
+              onClick={() => {
+                setType("INTERNSHIP");
+                setQuery("PFE");
+                fetchJobs();
+              }}
+              className="rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 px-3 py-1 text-xs font-semibold text-white transition-all"
+            >
+              🎓 Stages PFE 2026
+            </button>
+            <button
+              onClick={() => {
+                setType("INTERNSHIP");
+                setPaidOnly(true);
+                fetchJobs();
+              }}
+              className="rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 px-3 py-1 text-xs font-semibold text-cyan-200 transition-all"
+            >
+              💰 Stages Rémunérés
+            </button>
+            <button
+              onClick={() => {
+                setType("JOB");
+                setQuery("Junior");
+                fetchJobs();
+              }}
+              className="rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 px-3 py-1 text-xs font-semibold text-white transition-all"
+            >
+              💼 Premier Emploi / Juniors
+            </button>
+            <button
+              onClick={() => {
+                setArrangement("REMOTE");
+                fetchJobs();
+              }}
+              className="rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 px-3 py-1 text-xs font-semibold text-white transition-all"
+            >
+              🌐 Télétravail (100% Remote)
+            </button>
+          </div>
         </div>
       </div>
 
