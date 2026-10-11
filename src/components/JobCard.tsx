@@ -296,24 +296,13 @@ export function JobCard({
               <ChevronRight className="h-3.5 w-3.5" />
             </Link>
 
-            {applicationMethod === "EXTERNAL" && officialApplyUrl ? (
-              <a
-                href={officialApplyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 rounded-xl bg-[#0D2B45] hover:bg-[#1E5A6E] px-4 py-2 text-xs font-black text-white shadow-sm transition-all"
-              >
-                <span>Postuler</span>
-                <ArrowUpRight className="h-3.5 w-3.5" />
-              </a>
-            ) : (
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="flex items-center gap-1 rounded-xl bg-[#0D2B45] hover:bg-[#1E5A6E] px-4 py-2 text-xs font-black text-white shadow-sm transition-all"
-              >
-                <span>Postuler avec IA</span>
-              </button>
-            )}
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="flex items-center gap-1 rounded-xl bg-[#0D2B45] hover:bg-[#1E5A6E] px-4 py-2 text-xs font-black text-white shadow-sm transition-all cursor-pointer"
+            >
+              <span>Postuler</span>
+              <ArrowUpRight className="h-3.5 w-3.5" />
+            </button>
           </div>
         </div>
       </div>

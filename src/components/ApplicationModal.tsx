@@ -30,7 +30,7 @@ export function ApplicationModal({ job, onClose }: ApplicationModalProps) {
   const { t } = useI18n();
 
   const [method, setMethod] = useState<"EXTERNAL" | "ASSISTED" | "AUTO_APPLY">(
-    job.applicationMethod || "ASSISTED"
+    "ASSISTED"
   );
   const [selectedCvId, setSelectedCvId] = useState<string>("");
   const [coverLetter, setCoverLetter] = useState<string>("");
@@ -201,10 +201,10 @@ export function ApplicationModal({ job, onClose }: ApplicationModalProps) {
               <button
                 type="button"
                 onClick={() => setMethod("EXTERNAL")}
-                className={`py-2 px-2 rounded-lg font-medium transition-all cursor-pointer ${
+                className={`py-2 px-2 rounded-lg font-bold transition-all cursor-pointer ${
                   method === "EXTERNAL"
-                    ? "bg-[#0D2B45] text-[#1E5A6E] font-bold shadow"
-                    : "text-slate-500 hover:text-[#0D2B45]"
+                    ? "bg-[#0D2B45] text-white shadow"
+                    : "text-slate-600 hover:text-[#0D2B45]"
                 }`}
               >
                 1. Externe
@@ -212,21 +212,21 @@ export function ApplicationModal({ job, onClose }: ApplicationModalProps) {
               <button
                 type="button"
                 onClick={() => setMethod("ASSISTED")}
-                className={`py-2 px-2 rounded-lg font-medium transition-all cursor-pointer ${
+                className={`py-2 px-2 rounded-lg font-bold transition-all cursor-pointer ${
                   method === "ASSISTED"
-                    ? "bg-[#0D2B45] text-[#1E5A6E] font-bold shadow"
-                    : "text-slate-500 hover:text-[#0D2B45]"
+                    ? "bg-[#0D2B45] text-white shadow"
+                    : "text-slate-600 hover:text-[#0D2B45]"
                 }`}
               >
-                2. Assistée
+                2. Assistée par IA
               </button>
               <button
                 type="button"
                 onClick={() => setMethod("AUTO_APPLY")}
-                className={`py-2 px-2 rounded-lg font-medium transition-all cursor-pointer ${
+                className={`py-2 px-2 rounded-lg font-bold transition-all cursor-pointer ${
                   method === "AUTO_APPLY"
-                    ? "bg-[#0D2B45] text-[#1E5A6E] font-bold shadow"
-                    : "text-slate-500 hover:text-[#0D2B45]"
+                    ? "bg-[#0D2B45] text-white shadow"
+                    : "text-slate-600 hover:text-[#0D2B45]"
                 }`}
               >
                 3. Auto-Apply
