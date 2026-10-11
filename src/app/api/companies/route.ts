@@ -27,7 +27,9 @@ export async function GET(req: NextRequest) {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const where: any = {};
+    const where: any = {
+      country: "Morocco",
+    };
 
     if (query) {
       where.OR = [

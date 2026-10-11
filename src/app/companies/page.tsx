@@ -185,16 +185,16 @@ export default function CompaniesDirectoryPage() {
                 <div className="space-y-4">
                   {/* Top Bar */}
                   <div className="flex items-start justify-between gap-3">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#D1E3EC] bg-[#F4F8FA] overflow-hidden shadow">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm">
                       {company.logoUrl ? (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img
                           src={company.logoUrl}
                           alt={company.name}
-                          className="h-full w-full object-cover"
+                          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                         />
                       ) : (
-                        <Building2 className="h-6 w-6 text-[#1E5A6E]" />
+                        <Building2 className="h-7 w-7 text-[#1E5A6E]" />
                       )}
                     </div>
 
@@ -206,8 +206,8 @@ export default function CompaniesDirectoryPage() {
                         </span>
                       )}
                       {typeof company.rating === "number" && (
-                        <div className="inline-flex items-center gap-1 rounded-full bg-[#F4F8FA] border border-[#D1E3EC] px-2 py-0.5 text-[10px] font-bold text-amber-300">
-                          <Star className="h-3 w-3 fill-amber-300 text-amber-300" />
+                        <div className="inline-flex items-center gap-1 rounded-full bg-amber-50 border border-amber-200 px-2 py-0.5 text-[10px] font-bold text-amber-700">
+                          <Star className="h-3 w-3 fill-amber-500 text-amber-500" />
                           <span>{company.rating.toFixed(1)}</span>
                         </div>
                       )}
