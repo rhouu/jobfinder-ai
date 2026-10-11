@@ -38,11 +38,10 @@ export default function RegisterPage() {
       const data = await res.json();
       if (res.ok) {
         if (role === "EMPLOYER") {
-          router.push("/employer");
+          window.location.href = "/employer";
         } else {
-          router.push("/dashboard");
+          window.location.href = "/jobs";
         }
-        router.refresh();
       } else {
         setError(data.error || "Erreur lors de l'inscription.");
       }

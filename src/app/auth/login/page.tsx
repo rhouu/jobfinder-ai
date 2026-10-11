@@ -29,13 +29,12 @@ export default function LoginPage() {
       const data = await res.json();
       if (res.ok) {
         if (data.user?.role === "EMPLOYER") {
-          router.push("/employer");
+          window.location.href = "/employer";
         } else if (data.user?.role === "ADMIN") {
-          router.push("/admin");
+          window.location.href = "/admin";
         } else {
-          router.push("/dashboard");
+          window.location.href = "/jobs";
         }
-        router.refresh();
       } else {
         setError(data.error || "Identifiants invalides.");
       }
