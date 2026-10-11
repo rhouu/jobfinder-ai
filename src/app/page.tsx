@@ -158,7 +158,7 @@ export default async function HomePage() {
               <span>Stages Rémunérés</span>
             </Link>
             <Link
-              href="/jobs?experience=0"
+              href="/jobs?q=Junior"
               className="rounded-xl bg-[#0D2B45]/60 hover:bg-[#0D2B45] border border-cyan-300/40 px-5 py-3 text-xs sm:text-sm font-bold text-white transition-all flex items-center gap-2"
             >
               <span>Premier Emploi (0-2 ans)</span>

@@ -298,7 +298,7 @@ export default async function JobDetailPage({
                 {job.company.rating && (
                   <div className="inline-flex items-center gap-1.5 rounded-lg border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 text-xs font-bold text-amber-500">
                     <span>★ {job.company.rating.toFixed(1)} / 5</span>
-                    <span className="text-[10px] text-amber-500/80 font-normal">Avis Google Maps</span>
+                    <span className="text-[10px] text-amber-500/80 font-normal">Évaluation Vérifiée</span>
                   </div>
                 )}
 
@@ -363,8 +363,12 @@ export default async function JobDetailPage({
               </h3>
               <div className="space-y-2 text-slate-600">
                 <div className="flex justify-between pb-1.5 border-b border-[#D1E3EC]">
-                  <span className="text-slate-500">Fournisseur de flux :</span>
-                  <span className="font-semibold text-[#0D2B45]">{job.sourceProvider}</span>
+                  <span className="text-slate-500">Source de publication :</span>
+                  <span className="font-semibold text-[#0D2B45]">
+                    {job.sourceProvider === "DIRECT" || job.sourceProvider === "RECRUITER"
+                      ? "Recruteur Officiel Direct"
+                      : "Réseau Entreprises Certifiées Maroc"}
+                  </span>
                 </div>
                 <div className="flex justify-between pb-1.5 border-b border-[#D1E3EC]">
                   <span className="text-slate-500">Dernière vérification :</span>

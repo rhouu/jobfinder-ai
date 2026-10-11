@@ -177,7 +177,7 @@ export class GooglePlacesService {
             location: ent.city ? `${ent.city}, Maroc` : "Maroc",
             industry: ent.industry,
             isVerified: true,
-            description: `Entreprise répertoriée et certifiée via Google Places dans la région de ${ent.city || "Maroc"}. Spécialisée en ${ent.industry || "services professionnels"}.`,
+            description: `Entreprise répertoriée et certifiée dans le tissu économique de ${ent.city || "Maroc"}. Spécialisée en ${ent.industry || "services professionnels"}.`,
           },
         });
 
@@ -226,7 +226,7 @@ export class GooglePlacesService {
               country: ent.country || "Morocco",
               city: ent.city || "Maroc",
               isPaidInternship: isInternship,
-              description: `Établissement professionnel répertorié et certifié via Google Places à ${ent.city || "Maroc"}.\n\nSecteur d'activité : ${ent.industry || "Services professionnels"}.\nService / Spécialité : ${displayKeyword}.\n\nCoordonnées vérifiées :\n- Adresse : ${ent.address || "Centre-ville"}\n- Téléphone : ${ent.phone || "Consulter fiche Google Maps"}\n- Note Google : ${ent.rating ? `${ent.rating} / 5` : "Établissement vérifié"}\n\nCette structure recrute ou accepte les candidatures spontanées et le recrutement direct pour des profils qualifiés.`,
+              description: `Établissement professionnel répertorié et certifié à ${ent.city || "Maroc"}.\n\nSecteur d'activité : ${ent.industry || "Services professionnels"}.\nService / Spécialité : ${displayKeyword}.\n\nCoordonnées vérifiées :\n- Adresse : ${ent.address || "Centre-ville"}\n- Téléphone : ${ent.phone || "Fiche officielle entreprise"}\n- Note de réputation : ${ent.rating ? `${ent.rating} / 5` : "Établissement vérifié"}\n\nCette structure recrute ou accepte les candidatures spontanées et le recrutement direct pour des profils qualifiés.`,
               responsibilities: [
                 "Assurer les missions opérationnelles et de service au sein de l'établissement",
                 "Fournir un service de qualité conforme aux attentes des clients",

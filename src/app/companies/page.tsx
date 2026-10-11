@@ -82,14 +82,14 @@ export default function CompaniesDirectoryPage() {
           <div className="relative z-10 max-w-3xl space-y-4">
             <div className="inline-flex items-center gap-2 rounded-full border border-[#0D2B45]/50 bg-[#0D2B45]/20 px-3 py-1 text-xs font-semibold text-[#1E5A6E]">
               <Compass className="h-3.5 w-3.5" />
-              <span>Annuaire vérifié Google Places & Recruteurs Directs</span>
+              <span>Annuaire Officiel & Vérifié des Recruteurs au Maroc</span>
             </div>
             <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
               Découvrez les Entreprises qui recrutent
             </h1>
             <p className="text-sm sm:text-base text-[#1E5A6E]/80 leading-relaxed">
               Explorez les acteurs technologiques, industriels et innovants au Maroc et à l&apos;international.
-              Informations vérifiées en temps réel via l&apos;API Google Places avec coordonnées, notes et opportunités ouvertes.
+              Informations vérifiées avec coordonnées téléphoniques, adresses certifiées et opportunités de recrutement ouvertes.
             </p>
           </div>
         </div>
@@ -112,7 +112,7 @@ export default function CompaniesDirectoryPage() {
             <div className="flex items-center gap-2 w-full md:w-auto">
               <button
                 onClick={() => fetchCompanies(false)}
-                className="flex-1 md:flex-none px-5 py-3 rounded-xl bg-gradient-to-r from-[#0D2B45] to-[#1E5A6E] text-xs font-bold text-slate-900 shadow-lg shadow-[#0D2B45]/25 hover:brightness-110 active:scale-95 transition-all cursor-pointer"
+                className="flex-1 md:flex-none px-5 py-3 rounded-xl bg-gradient-to-r from-[#0D2B45] to-[#1E5A6E] text-xs font-bold text-white shadow-lg shadow-[#0D2B45]/25 hover:brightness-110 active:scale-95 transition-all cursor-pointer"
               >
                 Filtrer
               </button>
@@ -120,11 +120,11 @@ export default function CompaniesDirectoryPage() {
               <button
                 onClick={() => fetchCompanies(true)}
                 disabled={placesLoading}
-                title="Explorer et importer des entreprises vérifiées en direct via l'API Google Places"
+                title="Actualiser et explorer les entreprises du tissu économique marocain"
                 className="flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl border border-[#1E5A6E]/40 bg-[#0D2B45]/20 text-xs font-bold text-[#1E5A6E] hover:bg-[#0D2B45]/40 active:scale-95 transition-all disabled:opacity-50 cursor-pointer"
               >
                 <Compass className={`h-4 w-4 ${placesLoading ? "animate-spin" : ""}`} />
-                <span>{placesLoading ? "Exploration..." : "Live Google Places"}</span>
+                <span>{placesLoading ? "Actualisation..." : "Actualiser l'Annuaire"}</span>
               </button>
             </div>
           </div>
@@ -165,14 +165,14 @@ export default function CompaniesDirectoryPage() {
             <Building2 className="h-12 w-12 text-[#1E5A6E]/50 mx-auto" />
             <h3 className="text-lg font-bold text-slate-900">Aucune entreprise trouvée</h3>
             <p className="text-xs text-slate-800/60 max-w-md mx-auto">
-              Aucun résultat pour ces critères. Cliquez sur &quot;Live Google Places&quot; pour explorer directement l&apos;écosystème local.
+              Aucun résultat pour ces critères. Cliquez sur &quot;Actualiser l&apos;annuaire&quot; pour charger les établissements disponibles.
             </p>
             <button
               onClick={() => fetchCompanies(true)}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#0D2B45] to-[#1E5A6E] text-xs font-semibold text-slate-900"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#0D2B45] to-[#1E5A6E] text-xs font-semibold text-white shadow-md hover:brightness-110 cursor-pointer"
             >
               <Compass className="h-4 w-4" />
-              <span>Lancer l&apos;exploration Google Places</span>
+              <span>Actualiser les entreprises</span>
             </button>
           </div>
         ) : (

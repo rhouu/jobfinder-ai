@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { ApplicationModal } from "./ApplicationModal";
 import { InterviewSimulatorModal } from "./InterviewSimulatorModal";
-import { Sparkles, Send, MessageSquare, HelpCircle } from "lucide-react";
+import { Sparkles, Send, MessageSquare, HelpCircle, Share2 } from "lucide-react";
 
 interface JobDetailActionsProps {
   job: {
@@ -21,9 +21,24 @@ export function JobDetailActions({ job }: JobDetailActionsProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isInterviewModalOpen, setIsInterviewModalOpen] = useState(false);
 
+  const handleShareWhatsApp = () => {
+    const url = typeof window !== "undefined" ? window.location.href : `https://jobfinder.ma/jobs/${job.id}`;
+    const text = `📢 Opportunité sur JobFinder AI :\n*${job.title}* chez *${job.companyName}*\nConsulte l'offre et postule ici : ${url}`;
+    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, "_blank");
+  };
+
   return (
     <>
-      <div className="flex flex-wrap items-center gap-3">
+      <div className="flex flex-wrap items-center gap-2.5">
+        <button
+          type="button"
+          onClick={handleShareWhatsApp}
+          title="Partager cette offre sur WhatsApp"
+          className="flex items-center gap-1.5 rounded-xl border border-emerald-300 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 px-3.5 py-3 text-xs font-bold transition-all shadow-sm cursor-pointer"
+        >
+          <Share2 className="h-4 w-4 text-emerald-600" />
+          <span>Partager sur WhatsApp</span>
+        </button>
         {job.companyPhone && (
           <a
             href={`https://wa.me/${job.companyPhone.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
