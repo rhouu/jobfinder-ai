@@ -81,7 +81,7 @@ interface ApplicationItem {
 }
 
 export default function CandidateDashboardPage() {
-  const [activeTab, setActiveTab] = useState<"overview" | "cv" | "applications" | "profile">("overview");
+  const [activeTab, setActiveTab] = useState<"overview" | "cv" | "applications">("overview");
   const [user, setUser] = useState<UserProfile | null>(null);
   const [applications, setApplications] = useState<ApplicationItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -91,10 +91,6 @@ export default function CandidateDashboardPage() {
   const [isUploading, setIsUploading] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
-
-  // Matching trigger
-  const [isMatching, setIsMatching] = useState(false);
-  const [matchDoneMsg, setMatchDoneMsg] = useState<string | null>(null);
 
   // ATS CV Audit state
   const [atsAudit, setAtsAudit] = useState<AtsAuditResult | null>(null);
@@ -186,28 +182,6 @@ export default function CandidateDashboardPage() {
     }
   };
 
-  const handleRunAiMatching = async () => {
-    setIsMatching(true);
-    setMatchDoneMsg(null);
-    try {
-      const res = await fetch("/api/cv/match", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({}),
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setMatchDoneMsg(`Score IA mis à jour avec succès pour ${data.count} opportunités.`);
-      } else {
-        setMatchDoneMsg(data.error || "Erreur de matching.");
-      }
-    } catch {
-      setMatchDoneMsg("Erreur réseau.");
-    } finally {
-      setIsMatching(false);
-    }
-  };
-
   if (loading) {
     return (
       <div className="min-h-screen bg-[#F4F8FA] text-slate-900 flex flex-col">
@@ -244,31 +218,16 @@ export default function CandidateDashboardPage() {
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
+          <div>
             <button
               onClick={() => setIsExportModalOpen(true)}
-              className="flex items-center gap-1.5 rounded-xl border border-[#1E5A6E]/40 bg-white hover:bg-slate-50 px-3.5 py-2.5 text-xs font-bold text-[#0D2B45] shadow-sm transition-all cursor-pointer"
+              className="flex items-center gap-2 rounded-xl bg-[#0D2B45] hover:bg-[#1E5A6E] px-4 py-2.5 text-xs font-bold text-white shadow-md transition-all cursor-pointer"
             >
-              <FileText className="h-4 w-4 text-[#1E5A6E]" />
+              <FileText className="h-4 w-4 text-cyan-300" />
               <span>Exporter mon CV ATS (PDF)</span>
-            </button>
-            <button
-              onClick={handleRunAiMatching}
-              disabled={isMatching}
-              className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-[#0D2B45] to-[#1E5A6E] px-4 py-2.5 text-xs font-bold text-[#F4F8FA] shadow-md shadow-[#0D2B45]/25 hover:brightness-110 disabled:opacity-50 cursor-pointer"
-            >
-              <Sparkles className="h-4 w-4" />
-              <span>{isMatching ? "Analyse IA en cours..." : "Actualiser Matching IA"}</span>
             </button>
           </div>
         </div>
-
-        {matchDoneMsg && (
-          <div className="p-3 rounded-xl border border-[#1E5A6E]/30 bg-[#0D2B45]/20 text-xs text-[#1E5A6E] flex items-center justify-between">
-            <span>{matchDoneMsg}</span>
-            <button onClick={() => setMatchDoneMsg(null)} className="text-slate-400 hover:text-slate-900">✕</button>
-          </div>
-        )}
 
         {/* Dashboard Navigation Tabs */}
         <div className="flex border-b border-[#D1E3EC] gap-2 overflow-x-auto text-xs font-semibold">
@@ -276,7 +235,6 @@ export default function CandidateDashboardPage() {
             { id: "overview", label: "Vue d'ensemble", icon: Briefcase },
             { id: "cv", label: "Mon CV & Compétences IA", icon: FileText },
             { id: "applications", label: `Mes Candidatures (${applications.length})`, icon: Send },
-            { id: "profile", label: "Mon Profil & Préférences", icon: User },
           ].map((tab) => {
             const Icon = tab.icon;
             return (
@@ -647,39 +605,6 @@ export default function CandidateDashboardPage() {
                 ))}
               </div>
             )}
-          </div>
-        )}
-
-        {/* TAB 4: PROFILE */}
-        {activeTab === "profile" && (
-          <div className="rounded-2xl border border-[#D1E3EC] bg-[#FFFFFF]/80 p-6 space-y-6">
-            <h2 className="text-lg font-bold text-slate-900">Informations de profil</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-              <div>
-                <label className="text-slate-400 block mb-1">Nom complet</label>
-                <div className="p-3 rounded-xl bg-[#F4F8FA] border border-[#D1E3EC] text-slate-900 font-medium">
-                  {user?.name}
-                </div>
-              </div>
-              <div>
-                <label className="text-slate-400 block mb-1">Adresse email</label>
-                <div className="p-3 rounded-xl bg-[#F4F8FA] border border-[#D1E3EC] text-slate-900 font-medium">
-                  {user?.email}
-                </div>
-              </div>
-              <div>
-                <label className="text-slate-400 block mb-1">Localisation préférée</label>
-                <div className="p-3 rounded-xl bg-[#F4F8FA] border border-[#D1E3EC] text-slate-900 font-medium">
-                  {user?.candidateProfile?.preferredLocation || "Casablanca, Maroc"}
-                </div>
-              </div>
-              <div>
-                <label className="text-slate-400 block mb-1">Titre / Spécialité</label>
-                <div className="p-3 rounded-xl bg-[#F4F8FA] border border-[#D1E3EC] text-slate-900 font-medium">
-                  {user?.candidateProfile?.headline || "Ingénieur Fullstack / IA"}
-                </div>
-              </div>
-            </div>
           </div>
         )}
 

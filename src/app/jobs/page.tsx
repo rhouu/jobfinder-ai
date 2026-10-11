@@ -412,18 +412,9 @@ function JobsSearchContent() {
                   <span>Stage rémunéré uniquement</span>
                 </label>
 
-                <label className="flex items-center gap-2.5 text-xs font-semibold text-slate-700 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={verifiedOnly}
-                    onChange={(e) => {
-                      setVerifiedOnly(e.target.checked);
-                      setPage(1);
-                    }}
-                    className="rounded border-slate-300 text-[#0D2B45] focus:ring-[#0D2B45]"
-                  />
-                  <span>Sources officielles vérifiées</span>
-                </label>
+                <div className="flex items-center gap-2 pt-1 text-[11px] font-bold text-emerald-700">
+                  <span>🛡️ 100% des offres sont contrôlées</span>
+                </div>
               </div>
             </div>
 
