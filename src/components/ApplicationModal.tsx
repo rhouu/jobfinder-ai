@@ -175,9 +175,9 @@ export function ApplicationModal({ job, onClose }: ApplicationModalProps) {
             <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#0D2B45]/20 text-[#1E5A6E] border border-[#1E5A6E]/30">
               <CheckCircle2 className="h-8 w-8" />
             </div>
-            <h3 className="text-base font-bold text-[#0D2B45]">Candidature enregistrée avec succès !</h3>
+            <h3 className="text-base font-bold text-[#0D2B45]">Candidature transmise avec succès !</h3>
             <p className="text-xs text-slate-500 max-w-md mx-auto leading-relaxed">
-              Votre candidature a été consignée dans votre tableau de bord de suivi personnel. Vous pouvez y ajouter des notes, planifier vos rappels et suivre chaque étape.
+              Votre dossier et lettre de motivation ont été transmis directement par email au recruteur, et consignés dans votre tableau de bord personnel.
             </p>
             <div className="pt-2 flex justify-center gap-3">
               <a
@@ -337,10 +337,10 @@ export function ApplicationModal({ job, onClose }: ApplicationModalProps) {
                   type="button"
                   onClick={handleInPlatformSubmit}
                   disabled={isSubmitting || !candidateApproved}
-                  className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#0D2B45] to-[#1E5A6E] py-3 text-xs font-bold text-[#F4F8FA] shadow-lg shadow-[#0D2B45]/30 hover:brightness-110 disabled:opacity-50 cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#0D2B45] to-[#1E5A6E] py-3 text-xs font-black text-[#F4F8FA] shadow-lg shadow-[#0D2B45]/30 hover:brightness-110 disabled:opacity-50 cursor-pointer"
                 >
                   <Send className="h-4 w-4" />
-                  <span>{isSubmitting ? "Envoi en cours..." : "Soumettre ma candidature assistée"}</span>
+                  <span>{isSubmitting ? "Envoi de l'email en cours..." : "Envoyer ma candidature par Email (1-Clic Brevo)"}</span>
                 </button>
               </div>
             )}

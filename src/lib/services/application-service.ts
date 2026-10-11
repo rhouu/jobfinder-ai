@@ -1,5 +1,6 @@
 import { prisma } from "../prisma";
 import { ApplicationMethod, ApplicationStatus } from "@prisma/client";
+import { sendApplicationEmail } from "../email/brevo";
 
 export interface SubmitApplicationInput {
   userId: string;
@@ -96,12 +97,46 @@ export async function submitApplication(input: SubmitApplicationInput) {
     },
   });
 
+  // Automated 1-Click Brevo Email Delivery
+  if (status === ApplicationStatus.APPLIED) {
+    try {
+      const [user, company, cvDoc] = await Promise.all([
+        prisma.user.findUnique({
+          where: { id: userId },
+          include: { candidateProfile: true },
+        }),
+        job.companyId ? prisma.company.findUnique({ where: { id: job.companyId } }) : null,
+        cvDocumentId ? prisma.cVDocument.findUnique({ where: { id: cvDocumentId } }) : null,
+      ]);
+
+      const recruiterEmail =
+        company?.contactEmail ||
+        process.env.DEFAULT_RECRUITER_EMAIL ||
+        "recrutement@jobfinder.ma";
+
+      if (user) {
+        sendApplicationEmail({
+          toEmail: recruiterEmail,
+          candidateName: user.name,
+          candidateEmail: user.email,
+          candidatePhone: user.candidateProfile?.preferredLocation || null,
+          jobTitle: job.title,
+          companyName: job.companyName,
+          coverLetterHtml: coverLetterText || `Bonjour,\n\nJe vous adresse ma candidature pour l'opportunité "${job.title}".\n\nCordialement,\n${user.name}`,
+          cvFileName: cvDoc?.fileName || null,
+        }).catch((err) => console.error("Async Brevo dispatch error:", err));
+      }
+    } catch (emailErr) {
+      console.warn("Could not send automated email:", emailErr);
+    }
+  }
+
   // Create user notification
   await prisma.notification.create({
     data: {
       userId,
       title: "Candidature enregistrée",
-      message: `Votre candidature pour le poste "${job.title}" a bien été enregistrée (${status}).`,
+      message: `Votre candidature pour le poste "${job.title}" a bien été enregistrée et transmise par email (${status}).`,
       link: "/dashboard/applications",
     },
   });
