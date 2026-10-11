@@ -110,6 +110,18 @@ function JobsSearchContent() {
     }
   }, []);
 
+  useEffect(() => {
+    setQuery(searchParams.get("q") || "");
+    setLocation(searchParams.get("location") || "");
+    setCategory(searchParams.get("category") || "");
+    setType(searchParams.get("type") || "");
+    setArrangement(searchParams.get("arrangement") || "");
+    setPaidOnly(searchParams.get("paidOnly") === "true");
+    setVerifiedOnly(searchParams.get("verifiedOnly") === "true");
+    setSort(searchParams.get("sort") || "relevance");
+    setPage(Number(searchParams.get("page")) || 1);
+  }, [searchParams]);
+
   const displayedJobs = favoritesOnly
     ? jobs.filter((j) => savedJobIds.includes(j.id))
     : jobs;
@@ -206,10 +218,18 @@ function JobsSearchContent() {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
             <div>
               <h1 className="text-2xl sm:text-3xl font-black text-white">
-                Résultats de recherche
+                {type === "INTERNSHIP"
+                  ? "🎓 Stages & PFE 2026 au Maroc"
+                  : type === "JOB"
+                  ? "💼 Offres d'Emploi au Maroc"
+                  : "Résultats de recherche"}
               </h1>
               <p className="text-sm text-slate-200 mt-1 font-normal">
-                {total} offre(s) et opportunité(s) réelles répertoriées au Maroc
+                {type === "INTERNSHIP"
+                  ? `${total} stage(s) PFE, pré-embauche et immersion répertoriés`
+                  : type === "JOB"
+                  ? `${total} offre(s) d'emploi en CDI / CDD répertoriées`
+                  : `${total} offre(s) et opportunité(s) réelles répertoriées au Maroc`}
               </p>
             </div>
 

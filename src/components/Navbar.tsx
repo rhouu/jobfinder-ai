@@ -80,7 +80,7 @@ export function Navbar() {
         {/* Center: Navigation Links */}
         <nav className="hidden lg:flex items-center gap-8 text-[15px] font-bold text-[#0D2B45]">
           <Link
-            href="/jobs"
+            href="/jobs?type=JOB"
             className="hover:text-[#1E5A6E] border-b-2 border-transparent hover:border-[#0D2B45] py-1 transition-all"
           >
             {t.nav.findJobs}
@@ -98,13 +98,6 @@ export function Navbar() {
             className="hover:text-[#1E5A6E] border-b-2 border-transparent hover:border-[#0D2B45] py-1 transition-all"
           >
             Entreprises qui recrutent
-          </Link>
-
-          <Link
-            href="/salary-calculator"
-            className="hover:text-[#1E5A6E] border-b-2 border-transparent hover:border-[#0D2B45] py-1 transition-all"
-          >
-            Simulateur Salaire (MAD)
           </Link>
 
           <Link
@@ -239,7 +232,7 @@ export function Navbar() {
         <div className="border-t border-slate-200 bg-white px-5 py-4 lg:hidden">
           <div className="flex flex-col gap-3 font-bold text-[#0D2B45] text-sm">
             <Link
-              href="/jobs"
+              href="/jobs?type=JOB"
               onClick={() => setIsMobileMenuOpen(false)}
               className="py-2 hover:text-[#1E5A6E]"
             >

@@ -101,11 +101,6 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <Link href="/salary-calculator" className="hover:text-[#0D2B45] transition-colors">
-                  Simulateur Salaire (MAD)
-                </Link>
-              </li>
-              <li>
                 <Link href="/jobs?type=INTERNSHIP&pfe=true" className="hover:text-[#0D2B45] transition-colors">
                   Espace PFE & Écoles Maroc
                 </Link>

@@ -92,7 +92,7 @@ Retourne STRICTEMENT un tableau JSON de 5 questions/réponses au format suivant,
         {
           question: `Pourquoi souhaitez-vous rejoindre ${job.companyName} et quelles sont vos prétentions salariales en MAD ?`,
           category: "Comportemental / RH",
-          recommendedAnswer: "Démontrez que vous connaissez les projets et l'écosystème de l'entreprise. Donnez une fourchette salariale réaliste basée sur notre simulateur de salaire officiel.",
+          recommendedAnswer: "Démontrez que vous connaissez les projets et l'écosystème de l'entreprise. Donnez une fourchette salariale réaliste basée sur les standards du marché au Maroc.",
           trapToAvoid: "Dire 'n'importe quel salaire me convient' ou au contraire donner un montant déconnecté du marché marocain.",
         },
         {
