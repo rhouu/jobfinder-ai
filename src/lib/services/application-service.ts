@@ -112,7 +112,8 @@ export async function submitApplication(input: SubmitApplicationInput) {
       const recruiterEmail =
         company?.contactEmail ||
         process.env.DEFAULT_RECRUITER_EMAIL ||
-        "recrutement@jobfinder.ma";
+        process.env.BREVO_FROM_EMAIL ||
+        "rhouadam0@gmail.com";
 
       if (user) {
         sendApplicationEmail({
