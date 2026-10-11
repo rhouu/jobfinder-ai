@@ -102,10 +102,10 @@ export function Navbar() {
           </Link>
 
           <Link
-            href="/#how-it-works"
+            href="/salary-calculator"
             className="hover:text-[#1E5A6E] border-b-2 border-transparent hover:border-[#0D2B45] py-1 transition-all"
           >
-            {t.nav.howItWorks}
+            Simulateur Salaire (MAD)
           </Link>
 
           <Link

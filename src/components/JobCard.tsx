@@ -15,6 +15,7 @@ import {
   ExternalLink,
   Bell,
   ChevronRight,
+  MessageSquare,
 } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { ApplicationModal } from "./ApplicationModal";
@@ -218,17 +219,33 @@ export function JobCard({
             {description}
           </p>
 
-          {/* Direct phone / maps contacts */}
+          {/* Direct phone / WhatsApp / maps contacts */}
           {(companyPhone || googleMapsUrl) && (
-            <div className="mt-3 flex items-center gap-3 text-xs font-semibold text-slate-600">
+            <div className="mt-3 flex flex-wrap items-center gap-3 text-xs font-semibold text-slate-600">
               {companyPhone && (
-                <a
-                  href={`tel:${companyPhone}`}
-                  className="flex items-center gap-1 text-emerald-700 hover:underline"
-                >
-                  <Phone className="h-3.5 w-3.5 text-emerald-600" />
-                  <span>{companyPhone}</span>
-                </a>
+                <>
+                  <a
+                    href={`tel:${companyPhone}`}
+                    className="flex items-center gap-1 text-slate-700 hover:text-[#0D2B45] hover:underline"
+                  >
+                    <Phone className="h-3.5 w-3.5 text-slate-500" />
+                    <span>{companyPhone}</span>
+                  </a>
+
+                  {/* Direct WhatsApp button (Moroccan market recruitment standard) */}
+                  <a
+                    href={`https://wa.me/${companyPhone.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
+                      `Bonjour, je vous contacte suite à votre offre "${title}" publiée sur JobFinder AI. Mon profil m'intéresse beaucoup pour ce poste.`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="inline-flex items-center gap-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 px-2 py-0.5 text-[11px] font-bold transition-colors"
+                  >
+                    <MessageSquare className="h-3 w-3 text-emerald-600" />
+                    <span>WhatsApp RH</span>
+                  </a>
+                </>
               )}
               {googleMapsUrl && (
                 <a

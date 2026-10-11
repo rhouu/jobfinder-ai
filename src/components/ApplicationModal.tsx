@@ -36,7 +36,7 @@ export function ApplicationModal({ job, onClose }: ApplicationModalProps) {
   const [coverLetter, setCoverLetter] = useState<string>("");
   const [isGeneratingLetter, setIsGeneratingLetter] = useState(false);
   const [notes, setNotes] = useState("");
-  const [candidateApproved, setCandidateApproved] = useState(false);
+  const [candidateApproved, setCandidateApproved] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittedSuccess, setSubmittedSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);

@@ -204,6 +204,7 @@ export default async function JobDetailPage({
                 description: job.description,
                 applicationMethod: job.applicationMethod,
                 officialApplyUrl: job.officialApplyUrl,
+                companyPhone: job.company?.phone,
               }}
             />
           </div>
