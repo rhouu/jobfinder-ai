@@ -126,48 +126,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ESPACE ÉTUDIANTS, LAURÉATS & PFE MAROC (Idea 2) */}
-      {/* ESPACE ÉTUDIANTS, LAURÉATS & PFE MAROC */}
-      <section className="py-10 px-4 sm:px-8 lg:px-14 bg-gradient-to-r from-[#0B1528] via-[#162744] to-[#0B1528] text-white">
-        <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="space-y-2 text-center md:text-left">
-            <div className="inline-flex items-center gap-2 rounded-full bg-sky-400/20 border border-sky-300/30 px-3.5 py-1 text-xs font-bold text-sky-200">
-              <GraduationCap className="h-4 w-4 text-sky-300" />
-              <span>Spécial Étudiants, Lauréats & Écoles du Maroc</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white">
-              Préparez votre PFE & Premier Emploi
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-2xl">
-              Filtrez instantanément les stages PFE 2026, opportunités de pré-embauche et postes juniors adaptés aux écoles marocaines (OFPPT, ENSIAS, EMSI, FST, ENCG...).
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center md:justify-end gap-3 shrink-0">
-            <Link
-              href="/jobs?type=INTERNSHIP&pfe=true"
-              className="rounded-xl bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 text-xs sm:text-sm font-black shadow-lg shadow-blue-500/25 transition-all flex items-center gap-2 cursor-pointer"
-            >
-              <GraduationCap className="h-4 w-4 text-sky-200" />
-              <span>Stages PFE 2026</span>
-            </Link>
-            <Link
-              href="/jobs?type=INTERNSHIP&paidOnly=true"
-              className="rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 px-5 py-3 text-xs sm:text-sm font-bold text-white transition-all flex items-center gap-2"
-            >
-              <Rocket className="h-4 w-4 text-sky-300" />
-              <span>Stages Rémunérés</span>
-            </Link>
-            <Link
-              href="/jobs?q=Junior"
-              className="rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 px-5 py-3 text-xs sm:text-sm font-bold text-white transition-all flex items-center gap-2"
-            >
-              <span>Premier Emploi (0-2 ans)</span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* POPULAR CATEGORIES */}
       <section className="py-14 px-4 sm:px-8 lg:px-14 bg-[#F8FAFC]">
         <div className="w-full max-w-7xl mx-auto">
