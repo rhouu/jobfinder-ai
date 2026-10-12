@@ -26,6 +26,7 @@ import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { StaggerContainer } from "@/components/motion/StaggerContainer";
 import { AnimatedCounter } from "@/components/motion/AnimatedCounter";
 import { SubtleParallax } from "@/components/motion/SubtleParallax";
+import { ExecutiveMeshBackground } from "@/components/motion/ExecutiveMeshBackground";
 
 export const dynamic = "force-dynamic";
 
@@ -82,12 +83,10 @@ export default async function HomePage() {
 
       {/* INSTITUTIONAL HERO SECTION - Modern Royal Navy with Subtle Parallax & Stagger */}
       <section className="relative bg-[#0B1528] text-white pt-12 pb-24 md:pt-16 md:pb-32 px-4 sm:px-8 lg:px-14 overflow-hidden">
-        {/* Subtle background overlay with gentle parallax */}
-        <SubtleParallax speed={-0.04} className="absolute inset-0 pointer-events-none">
-          <div className="w-full h-full bg-gradient-to-b from-[#060D17] via-[#0B1528] to-[#0E1E38] opacity-95" />
-        </SubtleParallax>
+        {/* Interactive Executive Mesh Background with Cursor Glow, Precision Grid & Aurora */}
+        <ExecutiveMeshBackground />
 
-        <div className="relative w-full max-w-7xl mx-auto text-center">
+        <div className="relative z-10 w-full max-w-7xl mx-auto text-center">
           {/* Breadcrumb / Category Tag */}
           <RevealOnScroll durationMs={500} delayMs={50} yOffset={16}>
             <div className="inline-flex items-center gap-2 rounded-full bg-blue-500/15 px-4 py-1.5 text-xs font-semibold text-sky-300 mb-6 backdrop-blur-sm border border-sky-400/20">
@@ -152,8 +151,12 @@ export default async function HomePage() {
       </section>
 
       {/* POPULAR CATEGORIES */}
-      <section className="py-14 px-4 sm:px-8 lg:px-14 bg-[#F8FAFC]">
-        <div className="w-full max-w-7xl mx-auto">
+      <section className="relative py-14 px-4 sm:px-8 lg:px-14 bg-[#F8FAFC] overflow-hidden">
+        {/* Subtle ambient light orbs */}
+        <div className="absolute -top-32 -right-32 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-sky-500/5 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 w-full max-w-7xl mx-auto">
           <RevealOnScroll durationMs={500} yOffset={16}>
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-8">
               <div>
@@ -271,8 +274,11 @@ export default async function HomePage() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section id="how-it-works" className="py-16 px-4 sm:px-8 lg:px-14 bg-[#F8FAFC]">
-        <div className="w-full max-w-7xl mx-auto">
+      <section id="how-it-works" className="relative py-16 px-4 sm:px-8 lg:px-14 bg-[#F8FAFC] overflow-hidden">
+        {/* Subtle ambient light orb */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 w-full max-w-7xl mx-auto">
           <RevealOnScroll durationMs={550} yOffset={20}>
             <div className="text-center max-w-3xl mx-auto mb-14">
               <span className="text-xs font-black tracking-wider text-blue-700 uppercase">
