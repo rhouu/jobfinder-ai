@@ -209,7 +209,7 @@ function JobsSearchContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-[#0F172A] flex flex-col">
+    <div className="min-h-screen bg-[#F8FAFC] text-[#0F172A] flex flex-col animate-page-enter">
       <Navbar />
 
       {/* Top Banner (Deep Midnight #0A192F) */}

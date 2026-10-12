@@ -22,6 +22,10 @@ import {
   Rocket,
 } from "lucide-react";
 import { JobStatus } from "@prisma/client";
+import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
+import { StaggerContainer } from "@/components/motion/StaggerContainer";
+import { AnimatedCounter } from "@/components/motion/AnimatedCounter";
+import { SubtleParallax } from "@/components/motion/SubtleParallax";
 
 export const dynamic = "force-dynamic";
 
@@ -76,43 +80,64 @@ export default async function HomePage() {
     <div className="min-h-screen bg-[#F8FAFC] text-[#0F172A] flex flex-col">
       <Navbar />
 
-      {/* INSTITUTIONAL HERO SECTION - Modern Royal Navy */}
-      <section className="relative bg-[#0B1528] text-white pt-12 pb-24 md:pt-16 md:pb-32 px-4 sm:px-8 lg:px-14">
-        {/* Subtle background overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#060D17] via-[#0B1528] to-[#0E1E38] opacity-95 pointer-events-none" />
+      {/* INSTITUTIONAL HERO SECTION - Modern Royal Navy with Subtle Parallax & Stagger */}
+      <section className="relative bg-[#0B1528] text-white pt-12 pb-24 md:pt-16 md:pb-32 px-4 sm:px-8 lg:px-14 overflow-hidden">
+        {/* Subtle background overlay with gentle parallax */}
+        <SubtleParallax speed={-0.04} className="absolute inset-0 pointer-events-none">
+          <div className="w-full h-full bg-gradient-to-b from-[#060D17] via-[#0B1528] to-[#0E1E38] opacity-95" />
+        </SubtleParallax>
 
         <div className="relative w-full max-w-7xl mx-auto text-center">
           {/* Breadcrumb / Category Tag */}
-          <div className="inline-flex items-center gap-2 rounded-full bg-blue-500/15 px-4 py-1.5 text-xs font-semibold text-sky-300 mb-6 backdrop-blur-sm border border-sky-400/20">
-            <ShieldCheck className="h-4 w-4 text-sky-400" />
-            <span>Portail National de Recrutement & des Stages au Maroc</span>
-          </div>
+          <RevealOnScroll durationMs={500} delayMs={50} yOffset={16}>
+            <div className="inline-flex items-center gap-2 rounded-full bg-blue-500/15 px-4 py-1.5 text-xs font-semibold text-sky-300 mb-6 backdrop-blur-sm border border-sky-400/20">
+              <ShieldCheck className="h-4 w-4 text-sky-400" />
+              <span>Portail National de Recrutement & des Stages au Maroc</span>
+            </div>
+          </RevealOnScroll>
 
           {/* Main Headline */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white max-w-4xl mx-auto leading-tight">
-            Les opportunités et entreprises qui recrutent
-          </h1>
+          <RevealOnScroll durationMs={650} delayMs={150} yOffset={22}>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white max-w-4xl mx-auto leading-tight">
+              Les opportunités et entreprises qui recrutent
+            </h1>
+          </RevealOnScroll>
 
-          <p className="mt-4 text-base sm:text-lg text-slate-300 max-w-2xl mx-auto font-normal">
-            Découvrez les offres d&apos;emploi et stages d&apos;excellence à Casablanca, Rabat, Marrakech, Tanger et à l&apos;international.
-          </p>
+          {/* Subtitle */}
+          <RevealOnScroll durationMs={600} delayMs={260} yOffset={18}>
+            <p className="mt-4 text-base sm:text-lg text-slate-300 max-w-2xl mx-auto font-normal">
+              Découvrez les offres d&apos;emploi et stages d&apos;excellence à Casablanca, Rabat, Marrakech, Tanger et à l&apos;international.
+            </p>
+          </RevealOnScroll>
 
           {/* Search Box */}
-          <div className="mt-10">
+          <RevealOnScroll durationMs={650} delayMs={380} yOffset={24} className="mt-10">
             <HeroSearch />
-          </div>
+          </RevealOnScroll>
         </div>
       </section>
 
-      {/* METRICS BAR (Full width, white background, crisp icons) */}
+      {/* METRICS BAR (Full width, white background, crisp animated numbers) */}
       <section className="w-full bg-white border-b border-slate-200 py-6 px-4 sm:px-8 lg:px-14 shadow-sm">
         <div className="w-full max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div className="border-r border-slate-100 last:border-none">
-            <div className="text-3xl font-black text-[#0F172A]">{totalActiveJobs > 0 ? totalActiveJobs : "Actif"}</div>
+            <div className="text-3xl font-black text-[#0F172A]">
+              {totalActiveJobs > 0 ? (
+                <AnimatedCounter value={totalActiveJobs} />
+              ) : (
+                "Actif"
+              )}
+            </div>
             <div className="text-xs font-bold text-slate-500 mt-1 uppercase">Offres Actives Réelles</div>
           </div>
           <div className="border-r border-slate-100 last:border-none">
-            <div className="text-3xl font-black text-blue-600">{totalCompanies > 0 ? totalCompanies : "500+"}</div>
+            <div className="text-3xl font-black text-blue-600">
+              {totalCompanies > 0 ? (
+                <AnimatedCounter value={totalCompanies} suffix="+" />
+              ) : (
+                "500+"
+              )}
+            </div>
             <div className="text-xs font-bold text-slate-500 mt-1 uppercase">Établissements Répertoriés</div>
           </div>
           <div className="border-r border-slate-100 last:border-none">
@@ -129,32 +154,38 @@ export default async function HomePage() {
       {/* POPULAR CATEGORIES */}
       <section className="py-14 px-4 sm:px-8 lg:px-14 bg-[#F8FAFC]">
         <div className="w-full max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8">
-            <div>
-              <span className="text-xs font-black tracking-wider text-blue-700 uppercase">
-                Filières & Secteurs
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mt-1">
-                Explorez par domaine de compétences
-              </h2>
+          <RevealOnScroll durationMs={500} yOffset={16}>
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-8">
+              <div>
+                <span className="text-xs font-black tracking-wider text-blue-700 uppercase">
+                  Filières & Secteurs
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mt-1">
+                  Explorez par domaine de compétences
+                </h2>
+              </div>
+              <Link
+                href="/jobs"
+                className="mt-3 md:mt-0 flex items-center gap-1.5 text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors"
+              >
+                <span>Voir toutes les filières</span>
+                <ChevronRight className="h-4 w-4" />
+              </Link>
             </div>
-            <Link
-              href="/jobs"
-              className="mt-3 md:mt-0 flex items-center gap-1.5 text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors"
-            >
-              <span>Voir toutes les filières</span>
-              <ChevronRight className="h-4 w-4" />
-            </Link>
-          </div>
+          </RevealOnScroll>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          <StaggerContainer
+            staggerMs={70}
+            durationMs={550}
+            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4"
+          >
             {categories.map((cat, idx) => {
               const Icon = cat.icon;
               return (
                 <Link
                   key={idx}
                   href={`/jobs?category=${encodeURIComponent(cat.tag)}`}
-                  className="flex flex-col items-center justify-center p-5 rounded-2xl bg-white border border-slate-200 hover:border-blue-600 hover:shadow-md transition-all text-center group"
+                  className="flex flex-col items-center justify-center p-5 rounded-2xl bg-white border border-slate-200 hover:border-blue-600 hover:shadow-md transition-all text-center group h-full"
                 >
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all mb-3">
                     <Icon className="h-6 w-6" />
@@ -168,35 +199,41 @@ export default async function HomePage() {
                 </Link>
               );
             })}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
-      {/* FEATURED OPPORTUNITIES LIST (Full width, Emploi-Public Cards) */}
+      {/* FEATURED OPPORTUNITIES LIST (Full width, Staggered Cards) */}
       <section className="py-14 px-4 sm:px-8 lg:px-14 bg-white border-t border-b border-slate-200">
         <div className="w-full max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8">
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-600 animate-pulse" />
-                <span className="text-xs font-black tracking-wider text-blue-700 uppercase">
-                  Offres d&apos;emploi & Stages Récents
-                </span>
+          <RevealOnScroll durationMs={500} yOffset={16}>
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-8">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-600 animate-pulse" />
+                  <span className="text-xs font-black tracking-wider text-blue-700 uppercase">
+                    Offres d&apos;emploi & Stages Récents
+                  </span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mt-1">
+                  Dernières annonces publiées
+                </h2>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mt-1">
-                Dernières annonces publiées
-              </h2>
+              <Link
+                href="/jobs"
+                className="mt-3 md:mt-0 flex items-center gap-1.5 text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors"
+              >
+                <span>Accéder à toutes les offres</span>
+                <ChevronRight className="h-4 w-4" />
+              </Link>
             </div>
-            <Link
-              href="/jobs"
-              className="mt-3 md:mt-0 flex items-center gap-1.5 text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors"
-            >
-              <span>Accéder à toutes les offres</span>
-              <ChevronRight className="h-4 w-4" />
-            </Link>
-          </div>
+          </RevealOnScroll>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <StaggerContainer
+            staggerMs={80}
+            durationMs={600}
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          >
             {featuredJobs.map((job, idx) => (
               <JobCard
                 key={job.id}
@@ -229,27 +266,33 @@ export default async function HomePage() {
                 index={idx}
               />
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* HOW IT WORKS */}
       <section id="how-it-works" className="py-16 px-4 sm:px-8 lg:px-14 bg-[#F8FAFC]">
         <div className="w-full max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="text-xs font-black tracking-wider text-blue-700 uppercase">
-              Orientation & Recrutement
-            </span>
-            <h2 className="text-3xl font-black text-slate-900 mt-2">
-              Comment postuler sur JobFinder AI ?
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600 mt-2 font-normal">
-              Un processus transparent et sécurisé pour connecter les talents aux meilleurs recruteurs du Royaume.
-            </p>
-          </div>
+          <RevealOnScroll durationMs={550} yOffset={20}>
+            <div className="text-center max-w-3xl mx-auto mb-14">
+              <span className="text-xs font-black tracking-wider text-blue-700 uppercase">
+                Orientation & Recrutement
+              </span>
+              <h2 className="text-3xl font-black text-slate-900 mt-2">
+                Comment postuler sur JobFinder AI ?
+              </h2>
+              <p className="text-sm sm:text-base text-slate-600 mt-2 font-normal">
+                Un processus transparent et sécurisé pour connecter les talents aux meilleurs recruteurs du Royaume.
+              </p>
+            </div>
+          </RevealOnScroll>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white p-7 rounded-2xl border border-slate-200 shadow-sm text-center">
+          <StaggerContainer
+            staggerMs={100}
+            durationMs={600}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          >
+            <div className="bg-white p-7 rounded-2xl border border-slate-200 shadow-sm text-center h-full">
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600 text-white font-black text-xl mb-4 mx-auto shadow-md shadow-blue-500/25">
                 1
               </div>
@@ -259,7 +302,7 @@ export default async function HomePage() {
               </p>
             </div>
 
-            <div className="bg-white p-7 rounded-2xl border border-slate-200 shadow-sm text-center">
+            <div className="bg-white p-7 rounded-2xl border border-slate-200 shadow-sm text-center h-full">
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600 text-white font-black text-xl mb-4 mx-auto shadow-md shadow-blue-500/25">
                 2
               </div>
@@ -269,7 +312,7 @@ export default async function HomePage() {
               </p>
             </div>
 
-            <div className="bg-white p-7 rounded-2xl border border-slate-200 shadow-sm text-center">
+            <div className="bg-white p-7 rounded-2xl border border-slate-200 shadow-sm text-center h-full">
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600 text-white font-black text-xl mb-4 mx-auto shadow-md shadow-blue-500/25">
                 3
               </div>
@@ -278,7 +321,7 @@ export default async function HomePage() {
                 Postulez en un clic sur les plateformes officielles ou contactez directement les recruteurs par WhatsApp et Téléphone.
               </p>
             </div>
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 

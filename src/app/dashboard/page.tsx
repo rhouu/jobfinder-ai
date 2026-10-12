@@ -194,24 +194,24 @@ export default function CandidateDashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F4F8FA] text-slate-800 flex flex-col">
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-800 flex flex-col animate-page-enter">
       <Navbar />
 
       <main className="flex-1 mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         {/* Profile Header Card */}
-        <div className="rounded-3xl border border-[#D1E3EC] bg-[#FFFFFF]/85 p-6 sm:p-8 backdrop-blur-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-sm">
           <div className="flex items-center gap-4">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-tr from-[#0D2B45] via-[#8E5E47] to-[#1E5A6E] text-[#F4F8FA] font-bold text-2xl shadow-lg shadow-[#0D2B45]/20">
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-tr from-[#0F172A] to-blue-600 text-white font-bold text-2xl shadow-md">
               {user?.name.charAt(0).toUpperCase()}
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-xl sm:text-2xl font-bold text-slate-900">{user?.name}</h1>
-                <span className="rounded-full bg-[#0D2B45]/25 border border-[#1E5A6E]/30 px-2.5 py-0.5 text-[11px] font-semibold text-[#1E5A6E]">
+                <span className="rounded-full bg-blue-50 border border-blue-200 px-2.5 py-0.5 text-[11px] font-bold text-blue-700">
                   Candidat
                 </span>
               </div>
-              <p className="text-xs text-slate-400 mt-1">
+              <p className="text-xs text-slate-500 mt-1">
                 {user?.candidateProfile?.headline || "Profil Talents & Carrières"}
               </p>
               <p className="text-[11px] text-slate-400 mt-0.5">{user?.email}</p>
@@ -221,16 +221,16 @@ export default function CandidateDashboardPage() {
           <div>
             <button
               onClick={() => setIsExportModalOpen(true)}
-              className="flex items-center gap-2 rounded-xl bg-[#0D2B45] hover:bg-[#1E5A6E] px-4 py-2.5 text-xs font-bold text-white shadow-md transition-all cursor-pointer"
+              className="flex items-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 px-4 py-2.5 text-xs font-bold text-white shadow-sm transition-all cursor-pointer"
             >
-              <FileText className="h-4 w-4 text-cyan-300" />
+              <FileText className="h-4 w-4 text-white" />
               <span>Exporter mon CV ATS (PDF)</span>
             </button>
           </div>
         </div>
 
         {/* Dashboard Navigation Tabs */}
-        <div className="flex border-b border-[#D1E3EC] gap-2 overflow-x-auto text-xs font-semibold">
+        <div className="flex border-b border-slate-200 gap-2 overflow-x-auto text-xs font-semibold">
           {[
             { id: "overview", label: "Vue d'ensemble", icon: Briefcase },
             { id: "cv", label: "Mon CV & Compétences IA", icon: FileText },
@@ -241,10 +241,10 @@ export default function CandidateDashboardPage() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as typeof activeTab)}
-                className={`flex items-center gap-2 px-4 py-3 border-b-2 transition-colors whitespace-nowrap cursor-pointer ${
+                className={`flex items-center gap-2 px-4 py-3 border-b-2 transition-all whitespace-nowrap cursor-pointer ${
                   activeTab === tab.id
-                    ? "border-[#1E5A6E] text-[#1E5A6E]"
-                    : "border-transparent text-slate-400 hover:text-slate-900"
+                    ? "border-blue-600 text-blue-600 font-bold"
+                    : "border-transparent text-slate-500 hover:text-slate-900"
                 }`}
               >
                 <Icon className="h-4 w-4" />
@@ -256,7 +256,7 @@ export default function CandidateDashboardPage() {
 
         {/* TAB 1: OVERVIEW */}
         {activeTab === "overview" && (
-          <div className="space-y-6">
+          <div className="space-y-6 animate-fade-up">
             {/* Quick Metrics */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               <div className="rounded-2xl border border-[#D1E3EC] bg-[#FFFFFF]/80 p-4">
@@ -325,7 +325,7 @@ export default function CandidateDashboardPage() {
 
         {/* TAB 2: MY CV & SKILLS */}
         {activeTab === "cv" && (
-          <div className="space-y-8">
+          <div className="space-y-8 animate-fade-up">
             {/* Upload CV Box */}
             <div className="rounded-3xl border border-[#D1E3EC] bg-[#FFFFFF]/85 p-6 sm:p-8 backdrop-blur-xl space-y-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -538,7 +538,7 @@ export default function CandidateDashboardPage() {
 
         {/* TAB 3: APPLICATIONS TRACKER */}
         {activeTab === "applications" && (
-          <div className="space-y-6">
+          <div className="space-y-6 animate-fade-up">
             <div>
               <h2 className="text-lg font-bold text-slate-900">Tableau de bord de suivi des candidatures</h2>
               <p className="text-xs text-slate-400 mt-1">

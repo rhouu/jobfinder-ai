@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { I18nProvider } from "@/lib/i18n";
 import { GeminiChatWidget } from "@/components/GeminiChatWidget";
+import { MotionProvider } from "@/components/motion/MotionProvider";
 
 export const metadata: Metadata = {
   title: "JobFinder AI | Emplois, Stages & Matching CV par Intelligence Artificielle",
@@ -34,10 +35,12 @@ export default function RootLayout({
   return (
     <html lang="fr" dir="ltr">
       <body className="min-h-screen bg-[#F8FAFC] text-[#0F172A] antialiased selection:bg-blue-600 selection:text-white">
-        <I18nProvider>
-          {children}
-          <GeminiChatWidget />
-        </I18nProvider>
+        <MotionProvider>
+          <I18nProvider>
+            {children}
+            <GeminiChatWidget />
+          </I18nProvider>
+        </MotionProvider>
       </body>
     </html>
   );
