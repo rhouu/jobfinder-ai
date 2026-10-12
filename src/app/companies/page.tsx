@@ -72,7 +72,7 @@ export default function CompaniesDirectoryPage() {
   }, [fetchCompanies]);
 
   return (
-    <div className="min-h-screen bg-[#F4F8FA] text-slate-800 flex flex-col selection:bg-[#0D2B45] selection:text-slate-900">
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-800 flex flex-col selection:bg-blue-600 selection:text-white">
       <Navbar />
 
       <main className="flex-1 mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-10 space-y-8">
@@ -155,20 +155,20 @@ export default function CompaniesDirectoryPage() {
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <div
                 key={i}
-                className="h-64 rounded-3xl border border-[#D1E3EC] bg-[#FFFFFF]/50 animate-pulse"
+                className="h-64 rounded-2xl border border-slate-200 bg-white animate-pulse"
               />
             ))}
           </div>
         ) : companies.length === 0 ? (
-          <div className="rounded-3xl border border-[#D1E3EC] bg-[#FFFFFF]/60 p-12 text-center space-y-4">
-            <Building2 className="h-12 w-12 text-[#1E5A6E]/50 mx-auto" />
+          <div className="rounded-2xl border border-slate-200 bg-white p-12 text-center space-y-4 shadow-sm">
+            <Building2 className="h-12 w-12 text-slate-400 mx-auto" />
             <h3 className="text-lg font-bold text-slate-900">Aucune entreprise trouvée</h3>
-            <p className="text-xs text-slate-800/60 max-w-md mx-auto">
+            <p className="text-xs text-slate-500 max-w-md mx-auto">
               Aucun résultat pour ces critères. Cliquez sur &quot;Actualiser l&apos;annuaire&quot; pour charger les établissements disponibles.
             </p>
             <button
               onClick={() => fetchCompanies(true)}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#0D2B45] to-[#1E5A6E] text-xs font-semibold text-white shadow-md hover:brightness-110 cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 text-xs font-bold text-white shadow-md hover:bg-blue-700 cursor-pointer"
             >
               <Compass className="h-4 w-4" />
               <span>Actualiser les entreprises</span>
@@ -179,28 +179,30 @@ export default function CompaniesDirectoryPage() {
             {companies.map((company) => (
               <div
                 key={company.id}
-                className="group flex flex-col justify-between rounded-3xl border border-[#D1E3EC] bg-[#FFFFFF]/80 p-6 shadow-xl hover:border-[#1E5A6E]/60 transition-all duration-300 backdrop-blur-sm"
+                className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md hover:border-blue-500/60 transition-all duration-200"
               >
                 <div className="space-y-4">
                   {/* Top Bar */}
                   <div className="flex items-start justify-between gap-3">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white overflow-hidden p-1 shadow-sm">
                       {company.logoUrl ? (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img
                           src={company.logoUrl}
                           alt={company.name}
-                          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          className="h-full w-full object-contain"
                         />
                       ) : (
-                        <Building2 className="h-7 w-7 text-[#1E5A6E]" />
+                        <div className="flex h-full w-full items-center justify-center bg-blue-50 text-blue-700 font-black text-lg">
+                          {company.name.charAt(0).toUpperCase()}
+                        </div>
                       )}
                     </div>
 
                     <div className="flex flex-col items-end gap-1">
                       {company.isVerified && (
-                        <span className="inline-flex items-center gap-1 rounded-full bg-[#0D2B45]/20 border border-[#0D2B45]/40 px-2 py-0.5 text-[10px] font-semibold text-[#1E5A6E]">
-                          <ShieldCheck className="h-3 w-3 text-[#1E5A6E]" />
+                        <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-[10px] font-bold text-emerald-800">
+                          <ShieldCheck className="h-3 w-3 text-emerald-600" />
                           Vérifié
                         </span>
                       )}
@@ -215,34 +217,34 @@ export default function CompaniesDirectoryPage() {
 
                   {/* Title & Industry */}
                   <div>
-                    <h2 className="text-base font-bold text-slate-900 group-hover:text-[#1E5A6E] transition-colors line-clamp-1">
+                    <h2 className="text-base font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors line-clamp-1">
                       {company.name}
                     </h2>
-                    <p className="text-xs text-[#1E5A6E]/80 mt-0.5 line-clamp-1">
+                    <p className="text-xs text-slate-500 mt-0.5 line-clamp-1 font-medium">
                       {company.industry || "Technologie & Services"}
                     </p>
                   </div>
 
                   {/* Details */}
-                  <div className="space-y-2 text-xs text-slate-800/70 pt-2 border-t border-[#D1E3EC]">
+                  <div className="space-y-2 text-xs text-slate-600 pt-2 border-t border-slate-100">
                     {company.address ? (
                       <div className="flex items-start gap-2">
-                        <MapPin className="h-3.5 w-3.5 text-[#1E5A6E] shrink-0 mt-0.5" />
-                        <span className="line-clamp-2 text-[11px]">{company.address}</span>
+                        <MapPin className="h-3.5 w-3.5 text-blue-600 shrink-0 mt-0.5" />
+                        <span className="line-clamp-2 text-[11px] font-medium">{company.address}</span>
                       </div>
                     ) : (
-                      <div className="flex items-center gap-2">
-                        <MapPin className="h-3.5 w-3.5 text-[#1E5A6E] shrink-0" />
+                      <div className="flex items-center gap-2 font-medium">
+                        <MapPin className="h-3.5 w-3.5 text-blue-600 shrink-0" />
                         <span>{company.city || "Maroc"}</span>
                       </div>
                     )}
 
                     {company.phone && (
                       <div className="flex items-center gap-2">
-                        <Phone className="h-3.5 w-3.5 text-[#1E5A6E] shrink-0" />
+                        <Phone className="h-3.5 w-3.5 text-blue-600 shrink-0" />
                         <a
                           href={`tel:${company.phone}`}
-                          className="hover:text-slate-900 transition-colors text-[11px]"
+                          className="hover:text-blue-600 transition-colors text-[11px] font-medium"
                         >
                           {company.phone}
                         </a>
@@ -252,11 +254,11 @@ export default function CompaniesDirectoryPage() {
                 </div>
 
                 {/* Footer Actions */}
-                <div className="mt-6 pt-4 border-t border-[#D1E3EC] flex items-center justify-between gap-2">
-                  <div className="flex items-center gap-1.5 text-xs text-slate-800/80">
-                    <Briefcase className="h-3.5 w-3.5 text-[#1E5A6E]" />
-                    <span className="font-semibold text-slate-900">{company.jobsCount}</span>
-                    <span className="text-[11px] text-slate-800/60">offre(s)</span>
+                <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-1.5 text-xs text-slate-600 font-semibold">
+                    <Briefcase className="h-3.5 w-3.5 text-blue-600" />
+                    <span className="font-bold text-slate-900">{company.jobsCount}</span>
+                    <span className="text-[11px] text-slate-500">offre(s)</span>
                   </div>
 
                   <div className="flex items-center gap-2">
@@ -266,7 +268,7 @@ export default function CompaniesDirectoryPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         title="Ouvrir sur Google Maps"
-                        className="p-2 rounded-xl border border-[#D1E3EC] bg-[#F4F8FA] text-[#1E5A6E] hover:text-slate-900 hover:border-[#1E5A6E] transition-colors"
+                        className="p-2 rounded-xl border border-slate-200 bg-slate-50 text-slate-600 hover:text-blue-600 hover:border-blue-400 transition-colors"
                       >
                         <ExternalLink className="h-3.5 w-3.5" />
                       </a>
@@ -278,7 +280,7 @@ export default function CompaniesDirectoryPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         title="Site web officiel"
-                        className="p-2 rounded-xl border border-[#D1E3EC] bg-[#F4F8FA] text-[#1E5A6E] hover:text-slate-900 hover:border-[#1E5A6E] transition-colors"
+                        className="p-2 rounded-xl border border-slate-200 bg-slate-50 text-slate-600 hover:text-blue-600 hover:border-blue-400 transition-colors"
                       >
                         <Globe className="h-3.5 w-3.5" />
                       </a>
@@ -286,7 +288,7 @@ export default function CompaniesDirectoryPage() {
 
                     <Link
                       href={`/companies/${company.slug}`}
-                      className="inline-flex items-center gap-1 px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-xs font-bold text-white shadow-md shadow-blue-500/20 active:scale-95 transition-all cursor-pointer"
+                      className="inline-flex items-center gap-1 px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-xs font-bold text-white shadow-sm active:scale-95 transition-all cursor-pointer"
                     >
                       <span>Voir profil</span>
                     </Link>

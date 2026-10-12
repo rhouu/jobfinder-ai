@@ -73,27 +73,27 @@ export default async function HomePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F4F8FA] text-[#0F172A] flex flex-col">
+    <div className="min-h-screen bg-[#F8FAFC] text-[#0F172A] flex flex-col">
       <Navbar />
 
-      {/* INSTITUTIONAL HERO SECTION - Modern Deep Midnight with Electric Glow */}
-      <section className="relative bg-[#0A192F] text-white pt-12 pb-24 md:pt-16 md:pb-32 px-4 sm:px-8 lg:px-14">
+      {/* INSTITUTIONAL HERO SECTION - Modern Royal Navy */}
+      <section className="relative bg-[#0B1528] text-white pt-12 pb-24 md:pt-16 md:pb-32 px-4 sm:px-8 lg:px-14">
         {/* Subtle background overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#060D17] via-[#0A192F] to-[#0F2744] opacity-95 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#060D17] via-[#0B1528] to-[#0E1E38] opacity-95 pointer-events-none" />
 
         <div className="relative w-full max-w-7xl mx-auto text-center">
           {/* Breadcrumb / Category Tag */}
-          <div className="inline-flex items-center gap-2 rounded-full bg-blue-500/10 px-4 py-1.5 text-xs font-semibold text-cyan-300 mb-6 backdrop-blur-sm border border-cyan-400/20">
-            <ShieldCheck className="h-4 w-4 text-cyan-400" />
+          <div className="inline-flex items-center gap-2 rounded-full bg-blue-500/15 px-4 py-1.5 text-xs font-semibold text-sky-300 mb-6 backdrop-blur-sm border border-sky-400/20">
+            <ShieldCheck className="h-4 w-4 text-sky-400" />
             <span>Portail National de Recrutement & des Stages au Maroc</span>
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white max-w-4xl mx-auto leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white max-w-4xl mx-auto leading-tight">
             Les opportunités et entreprises qui recrutent
           </h1>
 
-          <p className="mt-4 text-base sm:text-lg text-slate-200 max-w-2xl mx-auto font-normal">
+          <p className="mt-4 text-base sm:text-lg text-slate-300 max-w-2xl mx-auto font-normal">
             Découvrez les offres d&apos;emploi et stages d&apos;excellence à Casablanca, Rabat, Marrakech, Tanger et à l&apos;international.
           </p>
 
@@ -127,17 +127,18 @@ export default async function HomePage() {
       </section>
 
       {/* ESPACE ÉTUDIANTS, LAURÉATS & PFE MAROC (Idea 2) */}
-      <section className="py-10 px-4 sm:px-8 lg:px-14 bg-gradient-to-r from-[#0A192F] via-[#1E293B] to-[#0A192F] text-white">
+      {/* ESPACE ÉTUDIANTS, LAURÉATS & PFE MAROC */}
+      <section className="py-10 px-4 sm:px-8 lg:px-14 bg-gradient-to-r from-[#0B1528] via-[#162744] to-[#0B1528] text-white">
         <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2 text-center md:text-left">
-            <div className="inline-flex items-center gap-2 rounded-full bg-cyan-400/20 border border-cyan-300/30 px-3.5 py-1 text-xs font-bold text-cyan-200">
-              <GraduationCap className="h-4 w-4 text-cyan-300" />
+            <div className="inline-flex items-center gap-2 rounded-full bg-sky-400/20 border border-sky-300/30 px-3.5 py-1 text-xs font-bold text-sky-200">
+              <GraduationCap className="h-4 w-4 text-sky-300" />
               <span>Spécial Étudiants, Lauréats & Écoles du Maroc</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white">
               Préparez votre PFE & Premier Emploi
             </h2>
-            <p className="text-xs sm:text-sm text-slate-200 max-w-2xl">
+            <p className="text-xs sm:text-sm text-slate-300 max-w-2xl">
               Filtrez instantanément les stages PFE 2026, opportunités de pré-embauche et postes juniors adaptés aux écoles marocaines (OFPPT, ENSIAS, EMSI, FST, ENCG...).
             </p>
           </div>
@@ -145,21 +146,21 @@ export default async function HomePage() {
           <div className="flex flex-wrap items-center justify-center md:justify-end gap-3 shrink-0">
             <Link
               href="/jobs?type=INTERNSHIP&pfe=true"
-              className="rounded-xl bg-white text-[#0D2B45] hover:bg-slate-100 px-5 py-3 text-xs sm:text-sm font-black shadow-lg transition-all flex items-center gap-2"
+              className="rounded-xl bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 text-xs sm:text-sm font-black shadow-lg shadow-blue-500/25 transition-all flex items-center gap-2 cursor-pointer"
             >
-              <GraduationCap className="h-4 w-4 text-[#1E5A6E]" />
+              <GraduationCap className="h-4 w-4 text-sky-200" />
               <span>Stages PFE 2026</span>
             </Link>
             <Link
               href="/jobs?type=INTERNSHIP&paidOnly=true"
-              className="rounded-xl bg-[#0D2B45]/60 hover:bg-[#0D2B45] border border-cyan-300/40 px-5 py-3 text-xs sm:text-sm font-bold text-white transition-all flex items-center gap-2"
+              className="rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 px-5 py-3 text-xs sm:text-sm font-bold text-white transition-all flex items-center gap-2"
             >
-              <Rocket className="h-4 w-4 text-cyan-300" />
+              <Rocket className="h-4 w-4 text-sky-300" />
               <span>Stages Rémunérés</span>
             </Link>
             <Link
               href="/jobs?q=Junior"
-              className="rounded-xl bg-[#0D2B45]/60 hover:bg-[#0D2B45] border border-cyan-300/40 px-5 py-3 text-xs sm:text-sm font-bold text-white transition-all flex items-center gap-2"
+              className="rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 px-5 py-3 text-xs sm:text-sm font-bold text-white transition-all flex items-center gap-2"
             >
               <span>Premier Emploi (0-2 ans)</span>
             </Link>
@@ -168,20 +169,20 @@ export default async function HomePage() {
       </section>
 
       {/* POPULAR CATEGORIES */}
-      <section className="py-14 px-4 sm:px-8 lg:px-14 bg-[#F4F8FA]">
+      <section className="py-14 px-4 sm:px-8 lg:px-14 bg-[#F8FAFC]">
         <div className="w-full max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8">
             <div>
-              <span className="text-xs font-black tracking-wider text-[#1E5A6E] uppercase">
+              <span className="text-xs font-black tracking-wider text-blue-700 uppercase">
                 Filières & Secteurs
               </span>
-              <h2 className="text-2xl sm:text-3xl font-black text-[#0D2B45] mt-1">
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mt-1">
                 Explorez par domaine de compétences
               </h2>
             </div>
             <Link
               href="/jobs"
-              className="mt-3 md:mt-0 flex items-center gap-1.5 text-xs font-bold text-[#0D2B45] hover:text-[#1E5A6E] transition-colors"
+              className="mt-3 md:mt-0 flex items-center gap-1.5 text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors"
             >
               <span>Voir toutes les filières</span>
               <ChevronRight className="h-4 w-4" />
@@ -195,12 +196,12 @@ export default async function HomePage() {
                 <Link
                   key={idx}
                   href={`/jobs?category=${encodeURIComponent(cat.tag)}`}
-                  className="flex flex-col items-center justify-center p-5 rounded-2xl bg-white border border-slate-200 hover:border-[#0D2B45] hover:shadow-md transition-all text-center group"
+                  className="flex flex-col items-center justify-center p-5 rounded-2xl bg-white border border-slate-200 hover:border-blue-600 hover:shadow-md transition-all text-center group"
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#E6F0F6] text-[#0D2B45] group-hover:bg-[#0D2B45] group-hover:text-white transition-all mb-3">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all mb-3">
                     <Icon className="h-6 w-6" />
                   </div>
-                  <h3 className="text-sm font-bold text-slate-900 group-hover:text-[#0D2B45] transition-colors">
+                  <h3 className="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
                     {cat.name}
                   </h3>
                   <span className="text-xs font-semibold text-slate-500 mt-1">
@@ -220,17 +221,17 @@ export default async function HomePage() {
             <div>
               <div className="flex items-center gap-2">
                 <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-600 animate-pulse" />
-                <span className="text-xs font-black tracking-wider text-[#1E5A6E] uppercase">
+                <span className="text-xs font-black tracking-wider text-blue-700 uppercase">
                   Offres d&apos;emploi & Stages Récents
                 </span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-black text-[#0D2B45] mt-1">
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mt-1">
                 Dernières annonces publiées
               </h2>
             </div>
             <Link
               href="/jobs"
-              className="mt-3 md:mt-0 flex items-center gap-1.5 text-xs font-bold text-[#0D2B45] hover:text-[#1E5A6E] transition-colors"
+              className="mt-3 md:mt-0 flex items-center gap-1.5 text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors"
             >
               <span>Accéder à toutes les offres</span>
               <ChevronRight className="h-4 w-4" />
@@ -275,13 +276,13 @@ export default async function HomePage() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section id="how-it-works" className="py-16 px-4 sm:px-8 lg:px-14 bg-[#F4F8FA]">
+      <section id="how-it-works" className="py-16 px-4 sm:px-8 lg:px-14 bg-[#F8FAFC]">
         <div className="w-full max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="text-xs font-black tracking-wider text-[#1E5A6E] uppercase">
+            <span className="text-xs font-black tracking-wider text-blue-700 uppercase">
               Orientation & Recrutement
             </span>
-            <h2 className="text-3xl font-black text-[#0D2B45] mt-2">
+            <h2 className="text-3xl font-black text-slate-900 mt-2">
               Comment postuler sur JobFinder AI ?
             </h2>
             <p className="text-sm sm:text-base text-slate-600 mt-2 font-normal">
@@ -291,30 +292,30 @@ export default async function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white p-7 rounded-2xl border border-slate-200 shadow-sm text-center">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0D2B45] text-white font-black text-xl mb-4 mx-auto shadow-md">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600 text-white font-black text-xl mb-4 mx-auto shadow-md shadow-blue-500/25">
                 1
               </div>
-              <h3 className="text-lg font-bold text-[#0D2B45]">Recherche Ciblée</h3>
+              <h3 className="text-lg font-bold text-slate-900">Recherche Ciblée</h3>
               <p className="text-xs text-slate-600 mt-2 leading-relaxed">
                 Trouvez des postes par ville, domaine technique, contrat (Stage PFE, CDI) ou travail à distance.
               </p>
             </div>
 
             <div className="bg-white p-7 rounded-2xl border border-slate-200 shadow-sm text-center">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#1E5A6E] text-white font-black text-xl mb-4 mx-auto shadow-md">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600 text-white font-black text-xl mb-4 mx-auto shadow-md shadow-blue-500/25">
                 2
               </div>
-              <h3 className="text-lg font-bold text-[#0D2B45]">Matching CV & IA</h3>
+              <h3 className="text-lg font-bold text-slate-900">Matching CV & IA</h3>
               <p className="text-xs text-slate-600 mt-2 leading-relaxed">
                 L&apos;IA compare vos compétences réelles avec les exigences des recruteurs et vous propose un score objectif.
               </p>
             </div>
 
             <div className="bg-white p-7 rounded-2xl border border-slate-200 shadow-sm text-center">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0D2B45] text-white font-black text-xl mb-4 mx-auto shadow-md">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600 text-white font-black text-xl mb-4 mx-auto shadow-md shadow-blue-500/25">
                 3
               </div>
-              <h3 className="text-lg font-bold text-[#0D2B45]">Candidature Directe</h3>
+              <h3 className="text-lg font-bold text-slate-900">Candidature Directe</h3>
               <p className="text-xs text-slate-600 mt-2 leading-relaxed">
                 Postulez en un clic sur les plateformes officielles ou contactez directement les recruteurs par WhatsApp et Téléphone.
               </p>

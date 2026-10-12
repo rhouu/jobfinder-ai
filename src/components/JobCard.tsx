@@ -138,7 +138,7 @@ export function JobCard({
   return (
     <>
       {/* Clean White Card styled exactly like Emploi-Public with horizontal banner & dual actions */}
-      <div className="w-full bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm hover:shadow-md hover:border-[#1E5A6E]/50 transition-all duration-200 flex flex-col justify-between">
+      <div className="w-full bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm hover:shadow-md hover:border-blue-500/60 transition-all duration-200 flex flex-col justify-between">
         <div>
           {/* Header row: Company badge + Actions */}
           <div className="flex items-start justify-between gap-4">
@@ -151,7 +151,7 @@ export function JobCard({
                   className="h-12 w-12 rounded-xl object-contain border border-slate-200 p-1 bg-white"
                 />
               ) : (
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#E6F0F6] text-[#0D2B45] font-black text-lg border border-[#1E5A6E]/20">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-700 font-black text-lg border border-blue-200">
                   {companyName.charAt(0).toUpperCase()}
                 </div>
               )}
@@ -164,7 +164,7 @@ export function JobCard({
                   {isVerified && (
                     <span
                       title="Établissement & offre vérifiés"
-                      className="inline-flex items-center text-[#1E5A6E]"
+                      className="inline-flex items-center text-blue-600"
                     >
                       <ShieldCheck className="h-4 w-4" />
                     </span>
@@ -179,7 +179,7 @@ export function JobCard({
 
                 <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 mt-1">
                   <span className="flex items-center gap-1">
-                    <MapPin className="h-3.5 w-3.5 text-[#1E5A6E]" />
+                    <MapPin className="h-3.5 w-3.5 text-blue-600" />
                     {city || location || "Maroc"}
                   </span>
                   <span>•</span>
@@ -268,7 +268,7 @@ export function JobCard({
                 </span>
               ))}
               {skillList.length > 4 && (
-                <span className="text-[11px] font-bold text-[#1E5A6E] self-center">
+                <span className="text-[11px] font-bold text-blue-600 self-center">
                   +{skillList.length - 4}
                 </span>
               )}

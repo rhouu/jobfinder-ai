@@ -209,7 +209,7 @@ function JobsSearchContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F4F8FA] text-[#0F172A] flex flex-col">
+    <div className="min-h-screen bg-[#F8FAFC] text-[#0F172A] flex flex-col">
       <Navbar />
 
       {/* Top Banner (Deep Midnight #0A192F) */}
@@ -370,13 +370,13 @@ function JobsSearchContent() {
           <aside className={`lg:col-span-4 lg:block ${showMobileFilter ? "block" : "hidden"} space-y-6`}>
             <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm space-y-5">
               <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                <span className="text-sm font-black text-[#0D2B45] uppercase tracking-wider flex items-center gap-2">
-                  <SlidersHorizontal className="h-4 w-4 text-[#1E5A6E]" />
+                <span className="text-sm font-black text-slate-900 uppercase tracking-wider flex items-center gap-2">
+                  <SlidersHorizontal className="h-4 w-4 text-blue-600" />
                   FILTRES
                 </span>
                 <button
                   onClick={handleResetFilters}
-                  className="text-xs font-bold text-[#1E5A6E] hover:underline"
+                  className="text-xs font-bold text-blue-600 hover:underline"
                 >
                   Réinitialiser
                 </button>
@@ -404,7 +404,7 @@ function JobsSearchContent() {
                           setType(item.val);
                           setPage(1);
                         }}
-                        className="text-[#0D2B45] focus:ring-[#0D2B45]"
+                        className="text-blue-600 focus:ring-blue-600"
                       />
                       <span>{item.label}</span>
                     </label>
@@ -433,7 +433,7 @@ function JobsSearchContent() {
                           setArrangement(item.val);
                           setPage(1);
                         }}
-                        className="text-[#0D2B45] focus:ring-[#0D2B45]"
+                        className="text-blue-600 focus:ring-blue-600"
                       />
                       <span>{item.label}</span>
                     </label>
@@ -452,7 +452,7 @@ function JobsSearchContent() {
                     setCategory(e.target.value);
                     setPage(1);
                   }}
-                  className="w-full rounded-xl border border-slate-300 bg-[#F8FAFC] px-3.5 py-2.5 text-xs font-bold text-slate-800 focus:border-[#0D2B45] focus:outline-none"
+                  className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-xs font-bold text-slate-800 focus:border-blue-600 focus:outline-none"
                 >
                   <option value="">Toutes les catégories</option>
                   {categories.map((c) => (
@@ -473,7 +473,7 @@ function JobsSearchContent() {
                       setPaidOnly(e.target.checked);
                       setPage(1);
                     }}
-                    className="rounded border-slate-300 text-[#0D2B45] focus:ring-[#0D2B45]"
+                    className="rounded border-slate-300 text-blue-600 focus:ring-blue-600"
                   />
                   <span>Stage rémunéré uniquement</span>
                 </label>
@@ -504,7 +504,7 @@ function JobsSearchContent() {
                     setSort(e.target.value);
                     setPage(1);
                   }}
-                  className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-1 font-bold text-[#0D2B45] focus:outline-none"
+                  className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-1 font-bold text-slate-800 focus:outline-none"
                 >
                   <option value="relevance">Pertinence</option>
                   <option value="recent">Plus récentes</option>
@@ -534,7 +534,7 @@ function JobsSearchContent() {
                     </p>
                     <button
                       onClick={() => setFavoritesOnly(false)}
-                      className="mt-5 rounded-xl bg-[#0D2B45] px-5 py-2.5 text-xs font-black text-white hover:bg-[#1E5A6E] transition-colors"
+                      className="mt-5 rounded-xl bg-blue-600 px-5 py-2.5 text-xs font-black text-white hover:bg-blue-700 transition-colors shadow-sm"
                     >
                       Explorer toutes les offres
                     </button>
@@ -548,7 +548,7 @@ function JobsSearchContent() {
                     </p>
                     <button
                       onClick={handleResetFilters}
-                      className="mt-5 rounded-xl bg-[#0D2B45] px-5 py-2.5 text-xs font-black text-white hover:bg-[#1E5A6E] transition-colors"
+                      className="mt-5 rounded-xl bg-blue-600 px-5 py-2.5 text-xs font-black text-white hover:bg-blue-700 transition-colors shadow-sm"
                     >
                       Réinitialiser les filtres
                     </button>
@@ -600,20 +600,20 @@ function JobsSearchContent() {
                 <button
                   onClick={() => setPage((p) => Math.max(1, p - 1))}
                   disabled={page === 1}
-                  className="flex items-center gap-1 rounded-xl border border-slate-300 bg-white px-4 py-2 text-xs font-bold text-[#0D2B45] hover:bg-[#E6F0F6] disabled:opacity-40 transition-all"
+                  className="flex items-center gap-1 rounded-xl border border-slate-300 bg-white px-4 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 hover:border-blue-600 hover:text-blue-600 disabled:opacity-40 transition-all cursor-pointer"
                 >
                   <ChevronLeft className="h-4 w-4" />
                   <span>Précédent</span>
                 </button>
 
-                <span className="px-4 text-xs font-black text-[#0D2B45]">
+                <span className="px-4 text-xs font-black text-slate-800">
                   Page {page} sur {totalPages}
                 </span>
 
                 <button
                   onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                   disabled={page === totalPages}
-                  className="flex items-center gap-1 rounded-xl border border-slate-300 bg-white px-4 py-2 text-xs font-bold text-[#0D2B45] hover:bg-[#E6F0F6] disabled:opacity-40 transition-all"
+                  className="flex items-center gap-1 rounded-xl border border-slate-300 bg-white px-4 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 hover:border-blue-600 hover:text-blue-600 disabled:opacity-40 transition-all cursor-pointer"
                 >
                   <span>Suivant</span>
                   <ChevronRight className="h-4 w-4" />
@@ -633,7 +633,7 @@ export default function JobsPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-[#F4F8FA] flex items-center justify-center text-[#0D2B45] font-bold text-sm">
+        <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center text-slate-800 font-bold text-sm">
           Chargement des opportunités...
         </div>
       }

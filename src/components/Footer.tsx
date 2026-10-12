@@ -41,22 +41,22 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/jobs?type=INTERNSHIP" className="hover:text-[#0D2B45] transition-colors">
+                <Link href="/jobs?type=INTERNSHIP" className="hover:text-blue-600 transition-colors">
                   {t.nav.internships}
                 </Link>
               </li>
               <li>
-                <Link href="/jobs?arrangement=REMOTE" className="hover:text-[#0D2B45] transition-colors">
+                <Link href="/jobs?arrangement=REMOTE" className="hover:text-blue-600 transition-colors">
                   Emplois en Télétravail
                 </Link>
               </li>
               <li>
-                <Link href="/jobs?city=Casablanca" className="hover:text-[#0D2B45] transition-colors">
+                <Link href="/jobs?city=Casablanca" className="hover:text-blue-600 transition-colors">
                   Offres à Casablanca
                 </Link>
               </li>
               <li>
-                <Link href="/jobs?city=Rabat" className="hover:text-[#0D2B45] transition-colors">
+                <Link href="/jobs?city=Rabat" className="hover:text-blue-600 transition-colors">
                   Offres à Rabat & Salé
                 </Link>
               </li>

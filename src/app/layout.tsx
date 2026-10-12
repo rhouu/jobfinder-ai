@@ -33,7 +33,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" dir="ltr">
-      <body className="min-h-screen bg-[#F4F8FA] text-[#0D2B45] antialiased selection:bg-[#1E5A6E] selection:text-white">
+      <body className="min-h-screen bg-[#F8FAFC] text-[#0F172A] antialiased selection:bg-blue-600 selection:text-white">
         <I18nProvider>
           {children}
           <GeminiChatWidget />

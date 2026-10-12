@@ -44,13 +44,13 @@ export function JobAlertSubscriptionCard() {
   };
 
   return (
-    <div className="rounded-2xl border border-[#B7D4E6] bg-gradient-to-br from-[#F4F8FA] to-white p-5 shadow-sm space-y-4">
-      <div className="flex items-center gap-2 text-[#0D2B45]">
-        <div className="p-2 rounded-xl bg-[#0D2B45] text-white">
+    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm space-y-4">
+      <div className="flex items-center gap-2.5">
+        <div className="p-2 rounded-xl bg-blue-600 text-white">
           <BellRing className="h-4 w-4" />
         </div>
         <div>
-          <h3 className="text-sm font-black text-[#0D2B45] leading-tight">
+          <h3 className="text-sm font-black text-slate-900 leading-tight">
             Alerte Emploi & PFE par Email
           </h3>
           <p className="text-[11px] text-slate-500">
@@ -76,7 +76,7 @@ export function JobAlertSubscriptionCard() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="votre.email@domaine.com"
               required
-              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-900 placeholder-slate-400 focus:border-[#0D2B45] focus:outline-none"
+              className="w-full rounded-xl border border-slate-300 bg-[#F8FAFC] px-3 py-2 text-xs font-semibold text-slate-900 placeholder-slate-400 focus:border-blue-600 focus:bg-white focus:outline-none"
             />
           </div>
 
@@ -88,7 +88,7 @@ export function JobAlertSubscriptionCard() {
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className="w-full rounded-xl border border-slate-300 bg-white px-2 py-1.5 text-xs font-medium text-slate-800 focus:outline-none"
+                className="w-full rounded-xl border border-slate-300 bg-[#F8FAFC] px-2 py-1.5 text-xs font-medium text-slate-800 focus:outline-none focus:border-blue-600"
               >
                 <option value="Informatique & Tech">Tech & IT</option>
                 <option value="Data & Intelligence Artificielle">Data / IA</option>
@@ -106,7 +106,7 @@ export function JobAlertSubscriptionCard() {
               <select
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                className="w-full rounded-xl border border-slate-300 bg-white px-2 py-1.5 text-xs font-medium text-slate-800 focus:outline-none"
+                className="w-full rounded-xl border border-slate-300 bg-[#F8FAFC] px-2 py-1.5 text-xs font-medium text-slate-800 focus:outline-none focus:border-blue-600"
               >
                 <option value="Casablanca / Télétravail">Casablanca / Remote</option>
                 <option value="Rabat / Salé">Rabat / Salé</option>
@@ -127,13 +127,13 @@ export function JobAlertSubscriptionCard() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-xl bg-[#0D2B45] hover:bg-[#1E5A6E] py-2 px-3 text-xs font-bold text-white shadow-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50"
+            className="w-full rounded-xl bg-blue-600 hover:bg-blue-700 py-2.5 px-3 text-xs font-bold text-white shadow-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50"
           >
             {loading ? (
               <span>Activation en cours...</span>
             ) : (
               <>
-                <Send className="h-3.5 w-3.5 text-cyan-300" />
+                <Send className="h-3.5 w-3.5 text-white" />
                 <span>Activer mon Alerte Gratuite</span>
               </>
             )}
