@@ -291,7 +291,7 @@ export default async function HomePage() {
             durationMs={600}
             className="grid grid-cols-1 md:grid-cols-3 gap-6"
           >
-            <div id="feature-search" className="bg-white/90 p-7 rounded-2xl border border-slate-200/90 shadow-sm text-center h-full backdrop-blur-sm hover:shadow-md transition-all">
+            <div className="bg-white/90 p-7 rounded-2xl border border-slate-200/90 shadow-sm text-center h-full backdrop-blur-sm hover:shadow-md transition-shadow">
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600 text-white font-black text-xl mb-4 mx-auto shadow-md shadow-blue-500/25">
                 1
               </div>
@@ -301,7 +301,7 @@ export default async function HomePage() {
               </p>
             </div>
 
-            <div id="feature-matching" className="bg-white/90 p-7 rounded-2xl border border-slate-200/90 shadow-sm text-center h-full backdrop-blur-sm hover:shadow-md transition-all">
+            <div className="bg-white/90 p-7 rounded-2xl border border-slate-200/90 shadow-sm text-center h-full backdrop-blur-sm hover:shadow-md transition-shadow">
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600 text-white font-black text-xl mb-4 mx-auto shadow-md shadow-blue-500/25">
                 2
               </div>
@@ -311,7 +311,7 @@ export default async function HomePage() {
               </p>
             </div>
 
-            <div id="feature-apply" className="bg-white/90 p-7 rounded-2xl border border-slate-200/90 shadow-sm text-center h-full backdrop-blur-sm hover:shadow-md transition-all">
+            <div className="bg-white/90 p-7 rounded-2xl border border-slate-200/90 shadow-sm text-center h-full backdrop-blur-sm hover:shadow-md transition-shadow">
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600 text-white font-black text-xl mb-4 mx-auto shadow-md shadow-blue-500/25">
                 3
               </div>

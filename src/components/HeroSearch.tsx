@@ -45,9 +45,8 @@ export function HeroSearch() {
     <div className="w-full max-w-5xl mx-auto">
       {/* Clean White Card with crisp shadow and border */}
       <form
-        id="search-bar-form"
         onSubmit={handleSearch}
-        className="rounded-2xl bg-white border border-slate-200 p-4 sm:p-5 shadow-xl transition-all"
+        className="rounded-2xl bg-white border border-slate-200 p-4 sm:p-5 shadow-xl"
       >
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
           {/* Keyword Input */}
@@ -94,7 +93,7 @@ export function HeroSearch() {
         </div>
 
         {/* Quick select filters line */}
-        <div id="quick-filters-bar" className="mt-3.5 pt-3.5 border-t border-slate-100 flex items-center justify-between gap-3 text-xs">
+        <div className="mt-3.5 pt-3.5 border-t border-slate-100 flex items-center justify-between gap-3 text-xs">
           <div className="flex items-center gap-2 overflow-x-auto pb-1 max-w-full flex-nowrap sm:flex-wrap scrollbar-none">
             <span className="font-bold text-slate-500 shrink-0">Suggestions rapides :</span>
             {[
